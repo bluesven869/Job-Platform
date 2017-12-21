@@ -1,0 +1,5 @@
+{% trans with {'%path%': app.request.getSchemeAndHttpHost()~path('invoice', {'id': order.getId()})}%}
+Hi,
+
+your order has been marked as completed. You can view <a href="%path%">your invoice</a>.
+{% endtrans %}

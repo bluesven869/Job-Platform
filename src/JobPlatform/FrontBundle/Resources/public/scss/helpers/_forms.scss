@@ -1,0 +1,382 @@
+label {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+label.required {
+  &:after {
+    color: $color-red;
+    content: '*';
+    display: inline-block;
+    margin: 0 0 0 5px;
+  }
+}
+
+fieldset {
+  legend {
+    border-bottom: 1px solid rgba(#000, .04);
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0 0 30px 0;
+    padding: 0 0 10px 0;
+  }
+}
+
+.checkbox-wrapper {
+  border: 1px solid rgba(#000, .12);
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  height: 14px;
+  margin: 0 6px 0 0;
+  outline: none;
+  position: relative;
+  vertical-align: -3px;
+  width: 14px;
+
+  input[type=checkbox] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    cursor: pointer;
+    height: 14px;
+    position: absolute;
+    opacity: 0;
+    width: 14px;
+    z-index: 10;
+  }
+
+  input[type=checkbox]:checked + .indicator {
+    background-color: $color-primary;
+    border-radius: 2px;
+    content: '';
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    width: 8px;
+  }
+}
+
+.radio-wrapper {
+  border: 1px solid rgba(#000, .12);
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 14px;
+  margin: 0 6px 0 0;
+  outline: none;
+  position: relative;
+  vertical-align: -3px;
+  width: 14px;
+
+  input[type=radio] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    cursor: pointer;
+    height: 14px;
+    position: absolute;
+    opacity: 0;
+    width: 14px;
+    z-index: 10;
+  }
+
+  input[type=radio]:checked + .indicator {
+    background-color: $color-primary;
+    border-radius: 50%;
+    content: '';
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    width: 8px;
+  }
+}
+
+input[type=checkbox]::-ms-expand {
+  display: none;
+}
+
+input[type=radio]::-ms-expand {
+  display: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-position: right 16px top 50%;
+  background-repeat: no-repeat;
+  background-image: url('/bundles/front/img/caret.svg') !important;
+  cursor: pointer;
+  line-height: 1;
+  min-height: 42px;
+  padding-right: 34px;
+}
+
+select[multiple] {
+  background-image: none !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0;
+
+  option {
+    padding: 4px 10px;
+  }
+}
+
+.form-control {
+  border: 1px solid rgba(#000, .06);
+  border-radius: 0;
+  font-size: 13px;
+  height: 42px;
+  padding: 10px 13px;
+
+  &:focus, &:active {
+    border-color: $color-primary;
+  }
+}
+
+select[multiple].form-control {
+  height: auto;
+}
+
+textarea.form-control {
+  line-height: 1.5;
+  min-height: 120px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+}
+
+.checkbox {
+  @include clearfix();
+
+  input {
+    margin: 0 6px 0 0;
+  }
+
+  label {
+    color: rgba($color-black, .7);
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+/********************************************************
+ * Editor
+ *******************************************************/
+.note-editor.note-frame {
+  border: 1px solid rgba(#000, .04);
+}
+
+.note-editor.note-frame .note-editing-area .note-editable {
+  min-height: 160px;
+}
+
+/********************************************************
+ * Collections
+ *******************************************************/
+.collection {
+  > .form-group {
+    position: relative;
+    border-bottom: 2px dashed rgba(#000, .06);
+    margin: 0 0 40px 0;
+    padding: 0 0 30px 0;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.collection-actions {
+  @include clearfix();
+
+  background-color: $color-black;
+  border-radius: 12px;
+  position: absolute;
+  right: 0;
+  top: -3px;
+
+  .fa {
+    font-size: 9px;
+  }
+
+  a {
+    border-right: 1px solid rgba(#fff, .08);
+    color: rgba(#fff, .8);
+    display: block;
+    float: left;
+    padding: 2px 7px;
+
+    &:last-child {
+      padding-right: 10px;
+    }
+
+    &:first-child {
+      padding-left: 12px;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+/********************************************************
+ * Educations
+ *******************************************************/
+.educations {
+  .degree, .field, .yearFrom, .yearTo {
+    float: left;
+    margin: 0 2% 15px 0;
+    width: 23.5%;
+
+    @include media-breakpoint-down(sm) {
+      margin-right: auto;
+      width: 100%;
+    }
+  }
+
+  .yearTo {
+    margin-right: 0;
+  }
+}
+
+/********************************************************
+ * Experiences
+ *******************************************************/
+.experiences {
+  .monthFrom, .monthTo, .yearFrom, .yearTo {
+    float: left;
+    margin: 0 2% 15px 0;
+    width: 23.5%;
+
+    @include media-breakpoint-down(sm) {
+      margin-right: auto;
+      width: 100%;
+    }
+  }
+
+  .yearTo {
+    margin-right: 0;
+  }
+}
+
+/********************************************************
+ * Contact
+ *******************************************************/
+.contact-form {
+  @include clearfix();
+
+  .name, .email {
+    float: left;
+    width: 48%;
+  }
+
+  .email {
+    float: right;
+  }
+
+  .btn {
+    float: right;
+  }
+}
+/********************************************************
+ * Bootstrap Select
+ *******************************************************/
+.btn-group.bootstrap-select {
+  > .btn {
+    background-color: #fff;
+    border: 1px solid rgba(#000, .07);
+    color: $color-black;
+    font-size: 13px;
+    font-weight: 400;
+    height: 42px;
+    padding-left: 13px;
+    text-transform: inherit;
+
+    &:active, &:focus {
+      outline: none !important;
+    }
+  }
+
+  .dropdown-menu.open {
+    background-color: #fff;
+    border: 1px solid rgba(#000, .06);
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        color: rgba($color-black, .7);
+        display: block;
+        font-size: 12px;
+        padding: 8px 14px;
+      }
+
+      &.selected {
+        a {
+          color: $color-black;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+/********************************************************
+ * Company
+ *******************************************************/
+.fieldset-company {
+  @include clearfix();
+
+  .company, .companyName, .regNo, .vatNo, .country, .county, .city, .street, .postalCode {
+    float: left;
+    margin-right: 2%;
+    width: 32%;
+
+    input, select {
+      width: 100%;
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin-right: auto;
+      width: 100%;
+    }
+  }
+
+  .company {
+    clear: both;
+  }
+
+  .companyName, .country, .street {
+    clear: left;
+  }
+
+  .vatNo, .city, .postalCode {
+    clear: right;
+    margin-right: 0;
+  }
+
+  .button {
+    clear: right;
+    float: right;
+    margin: 26px 0 0 0;
+    width: 32%;
+
+    @include media-breakpoint-down(sm) {
+      margin-right: auto;
+      width: 100%;
+    }
+  }
+}

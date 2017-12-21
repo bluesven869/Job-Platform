@@ -1,0 +1,184 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+    avatars_directory: '%kernel.root_dir%/../web/uploads/avatars'
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        google_maps_api_key: "%google_maps_api_key%"
+        google_analytics_code: "%google_analytics_code%"
+    form_themes:
+      - 'bootstrap_form.html.twig'
+      - 'VichUploaderBundle:Form:fields.html.twig'
+      
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+# FOS User
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: JobPlatform\AppBundle\Entity\User
+    from_email:
+        address: you@example.com
+        sender_name: "Job Platform"
+
+# Sonata
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+# Assetic
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    bundles:        ['FrontBundle']
+    filters:
+        cssrewrite: ~
+
+# Pagination
+knp_paginator:
+    page_range:                 5          # default page range used in pagination control
+    default_options:
+        page_name:              page       # page query parameter name
+        sort_field_name:        sort       # sort field query parameter name
+        sort_direction_name:    direction  # sort direction query parameter name
+        distinct:               true       # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: FrontBundle:Helpers:bootstrap_v4_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig                         # sort link template
+
+# File Uploader
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        avatar_image:
+            uri_prefix:         /uploads/avatars
+            upload_destination: '%kernel.root_dir%/../web/uploads/avatars'
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        logo_image:
+            uri_prefix:         /uploads/logos
+            upload_destination: '%kernel.root_dir%/../web/uploads/logos'
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+payum:
+    security:
+        token_storage:
+          JobPlatform\AppBundle\Entity\PaymentToken: { doctrine: orm}
+    storages:
+        JobPlatform\AppBundle\Entity\Payment: { doctrine: orm}
+    gateways:
+        paypal_express_checkout:
+            factory: paypal_express_checkout
+            username:  '%paypal_username%'
+            password: '%paypal_password%'
+            signature: '%paypal_signature%'
+            sandbox: '%paypal_sandbox%'
+
+app:
+    project_name: 'Job Platform Project'
+    currency: 'USD'
+    email_from: 'info@example.com'
+    payments:
+        pay_for_featured:
+            enabled: false
+            price: 9.99
+            duration: 14 # No. of days, 0 is unlimited
+        pay_for_publish:
+            enabled: true
+            price: 29.99
+            duration: 30 # No. of days, 0 is unlimited
+    gateways:
+        wire:
+            enabled: true
+            id: 'wire'
+            name: 'Wire Transfer'
+        paypal:
+            enabled: true
+            id: 'paypal'
+            name: 'PayPal Express Checkout'
+    invoicing:
+        full_name: 'Company Full Name'
+        reg_no: 'Registration Number'
+        vat_no: 'VAT Number'
+        street: 'Street / P.O.Box'
+        postal_code: 'Postal Code'
+        city: 'City'
+        country: 'Country'
+        bank_name: 'Your Bank Name'
+        bank_account: '123456789'
+        bank_iban: 'IBAN123456789'
+        bank_swift: 'ABCDEFG'
+        bank_code: '4321'
+        notice: 'Nullam rutrum nec lectus a maximus. Mauris eget turpis in sapien blandit tincidunt. Proin a neque interdum.'
+        constant_symbol: '0308'
+        days_due: 14

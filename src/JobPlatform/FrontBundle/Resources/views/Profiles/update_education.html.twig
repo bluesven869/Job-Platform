@@ -1,0 +1,15 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'profile' %}
+
+{% form_theme form 'FrontBundle::Helpers/collection.html.twig' %}
+
+{% block page_header %}{{ 'Profile'|trans }} - {{ 'Education'|trans }}{% endblock %}
+
+{% block title %}{{ 'Profile'|trans }} - {{ 'Education'|trans }}{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

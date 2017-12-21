@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <title>{% block title %}{% endblock %} | {{ 'Job Platform'|trans }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+    <link rel="stylesheet" href='//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700' type="text/css">
+
+    {% stylesheets
+    '@FrontBundle/Resources/public/libraries/summernote/summernote.css'
+    '@FrontBundle/Resources/public/libraries/bootstrap-select/css/bootstrap-select.min.css'
+    '@FrontBundle/Resources/public/css/font-awesome/css/font-awesome.css'
+    '@FrontBundle/Resources/public/css/owl.carousel.css'
+    '@FrontBundle/Resources/public/css/job-platform.css'  filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+{% block body %}{% endblock %}
+
+<script src="//maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}" type="text/javascript"></script>
+
+{% javascripts
+'@FrontBundle/Resources/public/js/jquery.min.js'
+'@FrontBundle/Resources/public/libraries/summernote/summernote.min.js'
+'@FrontBundle/Resources/public/libraries/bootstrap-select/js/bootstrap-select.min.js'
+'@FrontBundle/Resources/public/js/tether.min.js'
+'@FrontBundle/Resources/public/js/bootstrap.min.js'
+'@FrontBundle/Resources/public/js/collection.js'
+'@FrontBundle/Resources/public/js/owl.carousel.js'
+'@FrontBundle/Resources/public/js/job-platform.js'
+%}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}
+</body>
+</html>

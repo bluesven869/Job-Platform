@@ -1,0 +1,110 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% block title %}{{ 'Invoice'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Invoice'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="invoice">
+        <div class="invoice-header">
+            <div class="invoice-number">
+                <span>{{ 'Invoice Number'|trans}}</span> <strong>{{ orderRepository.getInvoiceId(order) }}</strong>
+            </div><!-- /.invoice-number -->
+        </div><!-- /.invoice-header -->
+
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="invoice-provider">
+                    <h3>{{ 'Provider'|trans }}</h3>
+
+                    <ul>
+                        <li><strong>{{ invoicing.full_name }}</strong></li>
+                        <li>{{ invoicing.street }}</li>
+                        <li>{{ invoicing.postal_code }}, {{ invoicing.city }}</li>
+                        <li>{{ invoicing.country }}</li>
+                    </ul>
+
+                    {% if invoicing.notice is defined %}
+                        <p class="invoice-note">{{ invoicing.notice }}</p>
+                    {% endif %}
+
+                    <ul>
+                        <li><strong>{{ 'ID No.'|trans }}:</strong> {{ invoicing.reg_no }}</li>
+                        <li><strong>{{ 'VAT No.'|trans }}:</strong> {{ invoicing.vat_no }}</li>
+                    </ul>
+
+                    <ul>
+                        <li><strong>{{ 'Bank Name'|trans }}:</strong> {{ invoicing.bank_name }}</li>
+                        <li><strong>{{ 'Account No.'|trans }}:</strong> {{ invoicing.bank_account }}</li>
+                        <li><strong>{{ 'IBAN.'|trans }}:</strong> {{ invoicing.bank_iban }}</li>
+                        <li><strong>{{ 'Code'|trans }}:</strong> {{ invoicing.bank_code }}</li>
+                        <li><strong>{{ 'SWIFT/BIC'|trans }}:</strong> {{ invoicing.bank_swift }}</li>
+                    </ul>
+                </div><!-- /.invoice-provider -->
+            </div>
+
+            <div class="col-sm-6">
+                <div class="invoice-receiver">
+                    <h3>{{ 'Receiver' }}</h3>
+
+                    <ul>
+                        <li><strong>{{ order.getCompany() }}</strong></li>
+                        <li>{{ order.getStreet() }}</li>
+                        <li>{{ order.getPostalCode() }}, {{ order.getCity() }}</li>
+                        <li>{{ order.getCountryName() }}</li>
+                    </ul>
+
+                    <ul>
+                        <li><strong>{{ 'ID No.'|trans }}:</strong> {{ order.getRegNo() }}</li>
+                        <li><strong>{{ 'VAT No.'|trans }}:</strong> {{ order.getVatNo() }}</li>
+                    </ul>
+
+                    <ul>
+                        <li><strong>{{ 'Created'|trans }}:</strong> {{ order.getCreated()|date("d.m.Y") }}</li>
+                        <li><strong>{{ 'Due Date'|trans }}:</strong> {{ order.getDueDate()|date("d.m.Y") }}</li>
+                    </ul>
+
+                    <ul>
+                        <li><strong>{{ 'Variable Symbol'|trans }}</strong>: {{ orderRepository.getInvoiceId(order) }}</li>
+                        <li><strong>{{ 'Constant Symbol'|trans }}</strong>: {{ invoicing.constant_symbol }}</li>
+                    </ul>
+                </div><!-- /.invoice-receiver -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+
+        <h3>{{ 'Order Items' }}</h3>
+
+        <div class="invoice-items">
+            <div class="invoice-item heading">
+                <div class="invoice-item-cell">
+                    {{ 'Item'|trans }}
+                </div><!-- /.invoice-item-cell -->
+
+                <div class="invoice-item-cell">
+                    {{ 'Price'|trans }}
+                </div><!-- /.invoice-item-cell -->
+            </div><!-- /.invoice-item -->
+
+            {% for item in order.getItems() %}
+                <div class="invoice-item">
+                    <div class="invoice-item-cell">
+                        {% if item.getType() == 'pay_for_featured' %}
+                            {{ 'Featuring job'|trans }}
+                        {% elseif item.getType() == 'pay_for_publish' %}
+                            {{ 'Publishing job'|trans }}
+                        {% endif %}
+                    </div>
+
+                    <div class="invoice-item-cell">
+                        {{ item.getPrice()|localizedcurrency(order.getCurrency()) }}
+                    </div><!-- /.invoice-item-cell -->
+                </div><!-- /.invoice-item -->
+            {% endfor %}
+        </div><!-- /.invoice-items -->
+
+        <div class="invoice-total">
+            {{ 'Total'|trans }} {{ order.price|localizedcurrency(order.currency) }}
+        </div><!-- /.invoice-total -->
+    </div>
+{% endblock %}

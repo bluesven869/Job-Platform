@@ -1,0 +1,60 @@
+.pricing-lines {
+  margin-bottom: 30px;
+}
+
+.pricing-line-price {
+  border-right: 1px solid rgba(#000, .04);
+  color: $color-primary;
+  float: left;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 70px;
+  margin: 0 30px 0 0;
+  padding: 0 30px 0 0;
+  text-align: center;
+  width: 130px;
+
+  @include media-breakpoint-down(xs) {
+    border-bottom: 1px solid rgba(#000, .04);
+    border-right: 0;
+    float: none;
+    line-height: 1;
+    margin: 0 0 30px 0;
+    padding: 0 0 30px 0;
+    width: 100%;
+  }
+}
+
+.pricing-line {
+  border-bottom: 1px solid rgba(#000, .04);
+  margin: 0 0 60px 0;
+  padding: 0 0 60px 0;
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.pricing-line-content {
+  display: table-cell;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+
+    span {
+      color: rgba($color-black, .5);
+      font-size: 14px;
+      font-style: italic;;
+    }
+  }
+
+  p {
+    color: rgba($color-black, .7);
+    font-size: 13px;
+    margin: 0;
+  }
+}

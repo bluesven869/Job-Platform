@@ -1,0 +1,46 @@
+.btn {
+  background-color: rgba(#000, .04);
+  border: 0;
+  border-radius: 0;
+  color: rgba($color-black, .5);
+  font-size: 12px;
+  font-weight: 500;
+  min-height: 42px;
+  padding: 13px 20px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+
+  &:active:focus, &:focus, &:hover {
+    background-color: rgba(#000, .04);
+    color: $color-black;
+    outline: 0;
+  }
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  color: #fff;
+
+  &:active:focus, &:focus, &:hover {
+    background-color: $color-primary;
+    color: #fff;
+  }
+}
+
+.btn-white {
+  background-color: #fff;
+
+  &:active:focus, &:focus, &:hover {
+    background-color: #fff;
+  }
+}
+
+.btn-success {
+  background-color: $color-green;
+  color: #fff;
+
+  &:active:focus, &:focus, &:hover {
+    background-color: $color-green;
+    color: #fff;
+  }
+}

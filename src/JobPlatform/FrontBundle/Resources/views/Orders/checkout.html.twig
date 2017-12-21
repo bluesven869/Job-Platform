@@ -1,0 +1,20 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% block title %}{{ 'Checkout'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Checkout'|trans }}{% endblock %}
+
+{% block content %}
+    {{ form_start(order) }}
+        <fieldset class="fieldset-gateway">
+            <legend>{{ 'Payment Gateway'|trans }}</legend>
+            {{ form_row(order.gateway) }}
+        </fieldset>
+
+        <fieldset class="fieldset-company">
+            <legend>{{ 'Company Information'|trans }}</legend>
+            {{ form_rest(order) }}
+        </fieldset>
+
+    {{ form_end(order) }}
+{% endblock %}

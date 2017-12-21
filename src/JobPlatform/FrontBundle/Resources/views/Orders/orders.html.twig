@@ -1,0 +1,92 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'orders' %}
+
+{% block title %}{{ 'Orders'|trans }}{% endblock %}
+
+{% block body_class %}content-simple{% endblock %}
+
+{% block page_header %}{{ 'Orders'|trans }}{% endblock %}
+
+{% block content %}
+    {% if orders|length %}
+        <div class="system-table">
+            <div class="system-head">
+                <div class="system-head-cell">
+                    {{ 'ID'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'Total'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'Company'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell min-width center">
+                    {{ 'Status'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell right">
+                    {{ 'Created'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                </div><!-- /.system-head-cell -->
+            </div><!-- /.sysytem-head -->
+
+            {% for order in orders %}
+                <div class="system-row">
+                    <div class="system-row-cell system-id">
+                        #{{ order.getId() }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-id">
+                        {{ order.getPrice()|localizedcurrency(order.getCurrency) }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title">
+                        <h3><a href="{{ path('company_show', {'id': order.getCompany().getId()}) }}">{{ order.company }}</a></h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell min-width center">
+                        {% if order.getStatus() == constant('JobPlatform\\AppBundle\\Entity\\Order::STATUS_COMPLETED') %}
+                            {{ 'Completed'|trans }}
+                        {% elseif order.getStatus() == constant('JobPlatform\\AppBundle\\Entity\\Order::STATUS_CANCELED') %}
+                            {{ 'Canceled'|trans }}
+                        {% elseif order.getStatus() == constant('JobPlatform\\AppBundle\\Entity\\Order::STATUS_NEW') %}
+                            {{ 'New'|trans }}
+                        {% endif %}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-date">
+                        {{ order.getCreated()|date("F jS \\a\\t g:ia") }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-actions">
+                        {% if order.getStatus == constant('JobPlatform\\AppBundle\\Entity\\Order::STATUS_COMPLETED') %}
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{  'Choose Action'|trans }}
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="{{ path('invoice', {'id': order.getId()}) }}">{{ 'View Invoice'|trans }}</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <small>{{ 'No actions available'|trans }}</small>
+                        {% endif %}
+                    </div><!-- /.system-row-cell -->
+                </div><!-- /.system-row -->
+            {% endfor %}
+        </div><!-- /.system-table -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(orders) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "FrontBundle::split.html.twig" %}
+
+{% block title %}{{ 'Sign In'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ 'Welcome Back'|trans }}</h1>
+
+    <p>
+        {% trans with {'%link%': path('fos_user_registration_register')} %}
+            Don't have an account? <a href="%link%">Create new account</a>, it takes less than a minute.
+        {% endtrans %}
+    </p>
+
+    {{ include('FOSUserBundle:Security:login_content.html.twig') }}
+
+    <ul>
+        <li><a href="{{ path('homepage') }}">{{ 'Return Back'|trans }}</a></li>
+        <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Registration'|trans }}</a></li>
+        <li><a href="{{ path('fos_user_resetting_request') }}">{{ 'Forgot Password?'|trans }}</a></li>
+    </ul>
+{% endblock %}
+
+{% block sidebar %}
+    <h1>{{ 'Boost your business by finding great people or start new live by finding job.'|trans }}</h1>
+    <ul>
+        <li>{{ 'Post Job Offers'|trans }}</li>
+        <li>{{ 'Build New Businesses'|trans }}</li>
+        <li>{{ 'Create Brilliant Resumes'|trans }}</li>
+        <li>{{ 'Search Non Public Profiles'|trans }}</li>
+        <li>{{ 'Look for Carrer Oppurtinities'|trans }}</li>
+    </ul>
+{% endblock %}

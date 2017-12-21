@@ -1,0 +1,47 @@
+<div class="item-wrapper">
+    <div class="job">
+        <div class="item-image-wrapper">
+            {% if profile.user.isVerified() %}
+                <div class="verified">
+                    <i class="fa fa-check"></i>
+                </div><!-- /.verified -->
+            {% endif %}
+
+            {% if profile.getAvatarName() %}
+                <div class="item-image">
+                    <img src="{{ vich_uploader_asset(profile, 'avatarImage') }}" alt="{{ profile.getDisplayName() }}">
+                </div><!-- /.item-image -->
+            {% else %}
+                <div class="item-image-placeholder">
+                    {{ profile.getInitials() }}
+                </div><!-- /.item-image -placeholder -->
+            {% endif %}
+        </div><!-- /.item-image -->
+
+        <div class="item-title">
+            <h3>
+                <a href="{{ path('profile_show', {id: profile.getId() }) }}">{{ profile.getDisplayName() }}</a>
+            </h3>
+        </div><!-- /.item-title -->
+
+        <ul class="item-meta">
+            {% if profile.getCountry() %}
+                <li>
+                    <i class="fa fa-map-marker"></i> <span>{{ profile.getCountryName() }}</span>
+                </li>
+            {% endif %}
+
+            {% if profile.getWebsite() %}
+                <li>
+                    <i class="fa fa-globe"></i> <span><a href="{{ profile.getWebsite() }}">{{ profile.getWebsite() }}</a></span>
+                </li>
+            {% endif %}
+        </ul><!-- /.item-meta -->
+
+        {% if profile.description %}
+            <div class="item-description">
+                {{ profile.description|striptags[:200] ~ '...' }}
+            </div><!-- /.item-description -->
+        {% endif %}
+    </div><!-- /.job -->
+</div><!-- /.item-wrapper -->

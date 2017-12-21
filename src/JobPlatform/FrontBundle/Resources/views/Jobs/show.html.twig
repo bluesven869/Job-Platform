@@ -1,0 +1,203 @@
+{% extends 'FrontBundle::sidebar_right.html.twig' %}
+
+{% set header_active = "jobs" %}
+
+{% block title %}{{ job.name }}{% endblock %}
+
+{% block page_header %}
+    {{ job.getName() }}
+{% endblock %}
+
+{% block page_header_additional %}
+    <div class="job-meta-large">
+        <div class="job-meta-items">
+            <div class="job-meta-item">
+                <div class="job-meta-item-icon">
+                    <i class="fa fa-info-circle"></i>
+                </div><!-- /.job-meta-item-icon -->
+
+                <div class="job-meta-item-content">
+                    <strong>{{ 'Company'|trans }}</strong>
+                    <span><a href="{{ path('company_show', {'id': job.getCompany().getId()}) }}">{{ job.getCompany().getName() }}</a></span>
+                </div><!-- /.job-meta-item-content -->
+            </div><!-- /.job-meta-item -->
+
+            {% if job.getProjectType() %}
+                <div class="job-meta-item">
+                    <div class="job-meta-item-icon">
+                        <i class="fa fa-tag"></i>
+                    </div><!-- /.job-meta-item-icon -->
+
+                    <div class="job-meta-item-content">
+                        <strong>{{ 'Project Type'|trans }}</strong>
+                        <span>{{ job.getProjectType() }}</span>
+                    </div><!-- /.job-meta-item-content -->
+                </div><!-- /.job-meta-item -->
+            {% endif %}
+
+            <div class="job-meta-item">
+                <div class="job-meta-item-icon">
+                    <i class="fa fa-calendar"></i>
+                </div><!-- /.job-meta-item-icon -->
+
+                <div class="job-meta-item-content">
+                    <strong>{{ 'Posted'|trans }}</strong>
+                    <span>{{ job.getCreated()|date("F jS") }}</span>
+                </div><!-- /.job-meta-item-content -->
+            </div><!-- /.job-meta-item -->
+        </div><!-- /.job-meta-items -->
+    </div><!-- /.job-meta -->
+{% endblock %}
+
+{% block body_above %}
+        {% if job.getCategories()|length %}
+            <ul class="job-meta-list">
+                <li>{{ 'Categories'|trans }}: </li>
+                {% for category in job.getCategories() %}
+                    <li><a href="{{ path('category_list', {'slug': category.slug}) }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul><!-- /.job-meta-list -->
+        {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="content-blocks">
+        <div class="content-block">
+            <h3>{{ 'Description'|trans }}</h3>
+
+            {{ job.description|striptags('<ol><ul><li><i><b><a><p>')|raw }}
+        </div><!-- /.content-block -->
+
+        <div class="content-block">
+            <h3>{{ 'Job Details'|trans }}</h3>
+
+            <ul class="list">
+                {% if job.getPrice() %}
+                    <li><strong>{{ 'Price'|trans }}:</strong> <span>{{ job.getPrice()|localizedcurrency(currency) }}</span></li>
+                {% endif %}
+
+                {% if job.getCompany() %}
+                    <li><strong>{{ 'Company'|trans }}:</strong> <span>{{ job.getCompany() }}</span></li>
+                {% endif %}
+
+                {% if job.getContract() %}
+                    <li><strong>{{ 'Contract'|trans }}:</strong> <span>{{ job.getContract() }}</span></li>
+                {% endif %}
+
+                {% if job.getProjectType() %}
+                    <li><strong>{{ 'Project Type'|trans }}:</strong> <span>{{ job.getProjectType() }}</span></li>
+                {% endif %}
+
+                {% if job.getCountry() %}
+                    <li><strong>{{ 'Country'|trans }}:</strong> <span>{{ job.getCountryName() }}</span></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.content-block -->
+
+        <div class="content-block">
+            <h3>{{ 'About'|trans }} {{ job.getCompany().getName() }}</h3>
+
+            {% if job.getCompany().getDescription() %}
+                {{ job.getCompany().getDescription()|striptags('<ol><ul><li><i><b><a><p>')|raw }}
+            {% endif %}
+
+            <ul class="list">
+                {% if job.getCompany().getWebsite() %}
+                    <li>
+                        <strong>{{ 'Website'|trans }}:</strong>
+                        <span><a href="{{ job.getCompany().getWebsite() }}">{{ job.getCompany().getWebsite() }}</a></span>
+                    </li>
+                {% endif %}
+
+                {% if job.getCompany().getEmail() %}
+                    <li>
+                        <strong>{{ 'E-mail'|trans }}:</strong>
+                        <span><a href="mailto:{{ job.getCompany().getEmail() }}">{{ job.getCompany().getEmail() }}</a></span>
+                    </li>
+                {% endif %}
+
+                {% if job.getCompany().getAddress() %}
+                    <li>
+                        <strong>{{ 'Address'|trans }}:</strong>
+                        <span>{{ job.getCompany().getAddress()|nl2br }}</span>
+                    </li>
+                {% endif %}
+
+                {% if job.getCompany().getCountry() %}
+                    <li>
+                        <strong>{{ 'Country'|trans }}:</strong>
+                        <span>{{ job.getCompany().getCountryName() }}</span>
+                    </li>
+                {% endif %}
+            </ul>
+        </div><!-- /.content-block -->
+    </div><!-- /.content-blocks -->
+{% endblock %}
+
+{% block sidebar %}
+    <div class="widget widget-menu">
+        <ul class="nav nav-pills nav-stacked">
+            {% if hasCurrentUserApplied %}
+                <li class="nav-item featured no">
+                    <a href="{{ path('application_withdraw', {'id': job.getId() }) }}" class="nav-link">
+                        <i class="fa fa-times"></i> {{ 'Withdraw application'|trans }}
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item featured">
+                    <a href="{{ path('application_create', {'id': job.getId() }) }}" class="nav-link">
+                        <i class="fa fa-file-text-o"></i> {{ 'Submit application'|trans }}
+                    </a>
+                </li>
+            {% endif %}
+
+            <li class="nav-item">
+                {% if job.isFavoriteByUser(app.getUser()) %}
+                    <a href="{{ path('favorite_remove', {'id': job.getId()}) }}" class="nav-link">
+                        <i class="fa fa-star"></i> {{ 'Remove from favorites'|trans }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('favorite_add', {'id': job.getId()}) }}" class="nav-link">
+                        <i class="fa fa-star-o"></i> {{ 'Add to favorites'|trans }}
+                    </a>
+                {% endif %}
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="window.print(); return false;">
+                    <i class="fa fa-print"></i> {{ 'Print job'|trans }}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://www.facebook.com/share.php?u={{ app.request.getUri() }}&amp;title={{job.getName() }}#sthash.BUkY1jCE.dpuf"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="nav-link">
+                    <i class="fa fa-facebook"></i> {{ 'Share on Facebook'|trans }}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://plus.google.com/share?url={{ app.request.getUri() }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="nav-link">
+                    <i class="fa fa-google"></i> {{ 'Share on Google+'|trans }}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://twitter.com/home?status={{ job.getName() }}+{{ app.request.getUri() }}#sthash.BUkY1jCE.dpuf" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="nav-link">
+                    <i class="fa fa-twitter"></i> {{ 'Share on Twitter'|trans }}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ app.request.getUri() }}&title={{ job.getName() }}&source={{ app.request.getSchemeAndHttpHost() }}" class="nav-link">
+                    <i class="fa fa-linkedin"></i> {{ 'Share on LinkedIn'|trans }}
+                </a>
+            </li>
+        </ul>
+    </div><!-- /.widget -->
+
+    <div class="partner-block bottom-image">
+        <h2>{{ 'Freelance Talents Needed'|trans }}</h2>
+        <h3>{{ 'Start Your Carreer As iOS Developer'|trans }}</h3>
+        <a href="#" class="btn btn-primary">{{ 'Apply Now'|trans }}</a>
+    </div><!-- /.widget-partner -->
+{% endblock %}

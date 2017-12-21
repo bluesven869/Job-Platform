@@ -1,0 +1,128 @@
+.job-categories, .job-meta {
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  strong {
+    color: rgba($color-black, .5);
+    font-weight: 500;
+    margin: 0 5px 0 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+}
+
+.job-categories {
+  margin: 0 0 0 10px;
+  vertical-align: middle;
+
+  li {
+    a {
+      background-color: rgba(#000, .04);
+      color: rgba($color-black, .5);
+      display: inline-block;
+      font-size: 11px;
+      line-height: 2;
+      margin: 0 5px 0 0;
+      padding: 0 7px;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-black;
+      }
+    }
+  }
+}
+
+
+.job-meta-large {
+  float: right;
+  margin: 0;
+  padding: 35px 0 0 0;
+
+  @include media-breakpoint-down(xs) {
+    float: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.job-meta-list {
+  @include clearfix();
+
+  list-style: none;
+  margin: 0 0 30px 0;
+  padding: 0;
+
+  li {
+    color: rgba($color-black, .5);
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin: 0 12px 0 0;
+
+    a {
+      background-color: $color-black;
+      border-radius: 2px;
+      color: rgba(#fff, 1);
+      font-weight: 400;
+      padding: 2px 8px;
+
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.job-meta-items {
+  @include clearfix();
+}
+
+.job-meta-item {
+  float: left;
+  margin: 0 60px 0 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include media-breakpoint-down(xs) {
+    clear: both;
+    float: none;
+    margin: 15px 0;
+  }
+}
+
+.job-meta-item-icon {
+  color: rgba($color-black, .1);
+  float: left;
+  font-size: 30px;
+  margin: -3px 20px 0 0;
+}
+
+.job-meta-item-content {
+  display: table-cell;
+
+  span, strong {
+    display: block;
+  }
+
+  strong {
+    color: $color-black;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  span {
+    color: rgba($color-black, .7);
+  }
+
+  a {
+    color: rgba($color-black, .7);
+  }
+}

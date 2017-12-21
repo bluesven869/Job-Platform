@@ -1,0 +1,51 @@
+<div class="hero-wrapper">
+    <div class="hero">
+        <div class="hero-inner">
+            <div class="hero-filter">
+                <div class="container">
+                    <h1>{{ 'Find the best fitting job carrer for you'|trans }}</h1>
+
+                    <p>
+                        {% trans %}
+                            We have available more than <strong>3500 job positions</strong> for <strong>8000 registered candidates</strong> provided by over <strong>1200 companies</strong> verified by our staff.
+                        {% endtrans %}
+                    </p>
+
+                    {{ form_start(filter, {'name': 'filter-hero-form'}) }}
+                    {{ form_widget(filter) }}
+                    {{ form_end(filter) }}
+                </div><!-- /.container -->
+            </div><!-- /.hero-filter -->
+
+            {% if jobs|length %}
+                <div class="hero-jobs">
+                    {% for job in jobs %}
+                        <div class="card card-block">
+                            {% if job.getIsFeatured() %}
+                                <div class="card-featured">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            {% endif %}
+
+                            <h3 class="card-title">
+                                <a href="{{ path('job_show', {'id': job.id}) }}">
+                                    {{ job.getName() }}
+                                </a>
+                            </h3>
+
+                            <div class="card-company">
+                                <a href="#">{{ job.getCompany().getName() }}</a>, {{ job.getCreated()|date("F jS") }}
+                            </div>
+
+                            <div class="card-categories">
+                                {% for category in job.getCategories()[:3] %}
+                                    <a class="card-category" href="{{ path('category_list', {'slug': category.getSlug()}) }}">{{ category.getName() }}</a>
+                                {% endfor %}
+                            </div>
+                        </div><!-- /.card -->
+                    {% endfor %}
+                </div><!-- /.hero-jobs -->
+            {% endif %}
+        </div><!-- /.hero-inner -->
+    </div><!-- /.hero -->
+</div><!-- /.hero-wrapper -->

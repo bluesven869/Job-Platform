@@ -1,0 +1,20 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'jobs' %}
+
+{% block title %}{{ 'Create Job'|trans }}{% endblock %}
+
+{% block page_header %}
+    <a href="{{ path('job_my') }}" class="return-back"><i class="fa fa-long-arrow-left"></i></a>
+    {{ 'Create Job'|trans }}
+{% endblock %}
+
+{% block header_below %}
+    {% include('FrontBundle::Companies/navigation-companies.html.twig') with {'active': 'jobs'}%}
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

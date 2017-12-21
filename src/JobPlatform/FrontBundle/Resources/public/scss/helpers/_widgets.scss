@@ -1,0 +1,249 @@
+.widget {
+  margin: 0 0 30px 0;
+
+  h2 {
+    border-bottom: 1px solid rgba(#000, .04);
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 -20px 20px -20px;
+    padding: 0 20px 16px 20px;
+  }
+}
+
+.widget-partner {
+  background-color: #fff;
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+.widget-filter-large {
+  float: right;
+  margin: 26px 0 0 0;
+  padding: 0;
+
+  form {
+    > div {
+      display: table;
+      width: 100%;
+
+      > div {
+        display: table-cell;
+        margin: 0;
+        padding: 0;
+        vertical-align: top;
+      }
+    }
+
+
+    .keyword {
+      input {
+        border-right: 0;
+        height: 46px;
+        width: 260px;
+
+        &:active, &:focus {
+          border-color: rgba(#000, .06);
+        }
+      }
+    }
+
+    .button {
+      width: 1px;
+
+      button {
+        background-color: rgba(#000, .02);
+        border: 1px solid rgba(#000, .06);
+        color: rgba($color-black, .7);
+        height: 46px;
+        position: relative;
+        right: auto;
+        top: auto;
+
+        &:active, &:focus {
+          background-color: rgba(#000, .02);
+          border: 1px solid rgba(#000, .06);
+          color: rgba($color-black, .7);
+        }
+      }
+    }
+  }
+}
+
+.widget-filter {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(#000, .04);
+  padding: 20px;
+
+  .form-group {
+    label {
+      clear: both;
+      float: left;
+      width: 100%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.categories {
+      margin-bottom: 1rem;
+    }
+  }
+
+  #price_from {
+    float: left;
+    margin-bottom: 15px;
+    width: 45%;
+  }
+
+  #price_to {
+    clear: right;
+    float: right;
+    margin-bottom: 15px;
+    width: 45%;
+  }
+
+  #categories, #contract, #project_type {
+    @include clearfix();
+  }
+}
+
+.widget-menu {
+  background-color: #fff;
+
+  .nav-item {
+    border-bottom: 1px solid rgba(#000, .04);
+    margin: 0 !important;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &.featured {
+      background-color: $color-green;
+      border-bottom-color: $color-green;
+      margin: -1px -1px 0 -1px;
+
+      &.no {
+        background-color: $color-red;
+        border-bottom-color: $color-red;
+      }
+
+      .nav-link {
+        color: #fff;
+
+        .fa {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .nav-link {
+    color: rgba($color-black, .7);
+    transition: color .2s linear;
+    padding: 12px 20px;
+
+    .fa {
+      color: rgba(#000, .3);
+      font-size: 13px;
+      margin: -2px 10px 0 0;
+      text-align: center;
+      transition: color .2s linear;
+      vertical-align: middle;
+      width: 23px;
+    }
+
+    .fa-facebook {
+      background-color: $color-facebook;
+      border-radius: 50%;
+      color: #fff !important;
+      font-size: 11px;
+      height: 23px;
+      line-height: 23px;
+      margin: -3px 10px -2px 0;
+      width: 23px;
+    }
+
+    .fa-google {
+      background-color: $color-google-plus;
+      border-radius: 50%;
+      color: #fff !important;
+      font-size: 11px;
+      height: 23px;
+      line-height: 23px;
+      margin: -3px 10px -2px 0;
+      width: 23px;
+    }
+
+    .fa-twitter {
+      background-color: $color-twitter;
+      border-radius: 50%;
+      color: #fff !important;
+      font-size: 11px;
+      height: 23px;
+      line-height: 23px;
+      margin: -3px 10px -2px 0;
+      width: 23px;
+    }
+
+    .fa-linkedin {
+      background-color: $color-linkedin;
+      border-radius: 50%;
+      color: #fff !important;
+      font-size: 11px;
+      height: 23px;
+      line-height: 23px;
+      margin: -3px 10px -2px 0;
+      width: 23px;
+    }
+
+    &:hover {
+      color: $color-primary;
+
+      .fa {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+.widget-map {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(#000, .04);
+  padding: 20px;
+
+  .get-direction {
+    background-color: $color-black-medium;
+    color: #fff;
+    font-size: 12px;
+    display: block;
+    margin: 0 -20px -20px -20px;
+    padding: 10px 0;
+    text-align: center;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  address {
+    margin-top: 20px;
+  }
+
+  #map-container {
+    height: 300px;
+    margin: -20px -20px 0px -20px;
+    width: calc(100% + 40px) !important;
+  }
+}
+
+.widget-items-small {
+  background-color: #fff;
+  border: 1px solid rgba(#000, .04);
+  padding: 20px;
+}

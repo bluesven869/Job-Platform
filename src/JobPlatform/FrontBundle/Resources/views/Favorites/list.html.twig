@@ -1,0 +1,65 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'favorites' %}
+
+{% block title %}{{ 'Favorites'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Favorites'|trans }}{% endblock %}
+
+{% block body_class %}content-simple{% endblock %}
+
+{% block content %}
+    {% if favorites|length > 0 %}
+        <div class="system-table">
+            <div class="system-head">
+                <div class="system-head-cell min-width">
+                    {{ 'ID'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'Job Position'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell right">
+                    {{ 'Created'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell"></div><!-- /.system-head-cell -->
+            </div><!-- /.system-head -->
+
+            {% for favorite in favorites %}
+                <div class="system-row">
+                    <div class="system-row-cell system-id">
+                        #{{ favorite.getId() }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title">
+                        <h3><a href="{{ path('job_show', {'id': favorite.job.getId()}) }}">{{ favorite.job.getName() }}</a></h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-date">
+                        {{ favorite.getCreated()|date("F jS \\a\\t g:ia") }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-actions">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ 'Choose Action'|trans }}
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ path('favorite_remove', {'id': favorite.job.getId()}) }}">{{ 'Delete'|trans }}</a>
+                            </div>
+                        </div>
+                    </div><!-- /.system-row-cell -->
+                </div><!-- /.system-row -->
+            {% endfor %}
+        </div><!-- /.system-table -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(favorites) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

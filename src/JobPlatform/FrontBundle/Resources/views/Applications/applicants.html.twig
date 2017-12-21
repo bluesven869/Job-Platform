@@ -1,0 +1,59 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'applicants' %}
+
+{% block title %}{{ 'Applicants'|trans }}{% endblock %}
+
+{% block body_class %}content-simple{% endblock %}
+
+{% block page_header %}{{ 'Applicants'|trans }}{% endblock %}
+
+{% block content %}
+    {% if applicants|length > 0 %}
+        <div class="system-table">
+            <div class="system-head">
+                <div class="system-head-cell min-width">
+                    {{ 'ID'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell min-width">
+                    {{ 'Job Position'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'User Profile'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell right">
+                    {{ 'Created'|trans }}
+                </div><!-- /.system-head-cell -->
+            </div><!-- /.sysytem-head -->
+
+            {% for applicant in applicants %}
+                <div class="system-row">
+                    <div class="system-row-cell system-id min-width">
+                        #{{ applicant.getId() }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title min-width">
+                        <h3><a href="{{ path('job_show', {'id': applicant.getJob().getId() }) }}">{{ applicant.getJob().getName() }}</a></h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title">
+                        <h3><a href="{{ path('profile_show', {'id': applicant.getUser().getProfile().getId() }) }}">{{ applicant.getUser().getProfile().getDisplayName() }}</a></h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-date">
+                        {{ applicant.getCreated()|date("F jS \\a\\t g:ia") }}
+                    </div><!-- /.system-row-cell -->
+                </div><!-- /.system-row -->
+            {% endfor %}
+        </div><!-- /.system-table -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(applicants) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

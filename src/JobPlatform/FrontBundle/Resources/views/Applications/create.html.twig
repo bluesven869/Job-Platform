@@ -1,0 +1,11 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% block title %}{{ 'New Application'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'New Application'|trans }}{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

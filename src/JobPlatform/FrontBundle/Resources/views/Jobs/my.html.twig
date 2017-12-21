@@ -1,0 +1,138 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'jobs' %}
+
+{% block title %}{{ 'Jobs'|trans }}{% endblock %}
+
+{% block body_class %}content-simple{% endblock %}
+
+{% block page_header %}{{ 'Jobs'|trans }}{% endblock %}
+
+{% block page_header_additional %}
+    <a href="{{ path('job_create') }}" class="btn btn-success">{{ 'Create Job'|trans }}</a>
+{% endblock %}
+
+{% block content %}
+    {% if jobs|length > 0 %}
+        <div class="system-table">
+            <div class="system-head">
+                <div class="system-head-cell">
+                    {{ 'ID'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'Title'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell center min-width">
+                    {{ 'Company'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell center min-width">
+                    {{ 'Featured'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell center min-width">
+                    {{ 'Published'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell right">
+                    {{ 'Created'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                </div><!-- /.system-head-cell -->
+            </div><!-- /.sysytem-head -->
+
+            {% for job in jobs %}
+                <div class="system-row">
+                    <div class="system-row-cell system-id">
+                        #{{ job.getId() }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title">
+                        <h3><a href="{{ path('job_show', {'id': job.id}) }}">{{ job.name }}</a></h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-company">
+                        <a href="{{ path('company_show', {'id': job.getCompany().getId()}) }}" class="system-simple-link">
+                            {{ job.getCompany() }}
+                        </a>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell center min-width">
+                        <div class="system-bool">
+                            {% if job.getIsFeatured() %}
+                                <i class="fa fa-check"></i>
+                            {% else %}
+                                <i class="fa fa-close"></i>
+                            {% endif %}
+                        </div><!-- /.system-bool -->
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell center min-width">
+                        <div class="system-bool">
+                            {% if job.getIsPublished() %}
+                                <i class="fa fa-check"></i>
+                            {% else %}
+                                <i class="fa fa-close"></i>
+                            {% endif %}
+                        </div><!-- /.system-bool -->
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-date">
+                        {{ job.getCreated()|date("F jS") }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-actions">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ 'Choose Action'|trans }}
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ path('job_update', {'id': job.id}) }}">{{ 'Update'|trans }}</a>
+
+                                {% if job.getIsPublished() %}
+                                    <a class="dropdown-item" href="{{ path('job_unpublish', {'id': job.id}) }}">
+                                        {{ 'Unpublish'|trans }}
+                                    </a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{{ path('job_publish', {'id': job.id}) }}">
+                                        {{ 'Publish'|trans }}
+
+                                        {% if payments.pay_for_publish.enabled %}
+                                            ({{ payments.pay_for_publish.price|localizedcurrency(currency) }})
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+
+                                {% if job.getIsFeatured() %}
+                                    <a class="dropdown-item" href="{{ path('job_unfeature', {'id': job.id}) }}">
+                                        {{ 'Unfeature'|trans }}
+                                    </a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{{ path('job_feature', {'id': job.id}) }}">
+                                        {{ 'Feature'|trans }}
+                                        {% if payments.pay_for_featured.enabled %}
+                                            ({{ payments.pay_for_featured.price|localizedcurrency(currency) }})
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+
+                                <a class="dropdown-item" href="{{ path('job_show', {'id': job.id}) }}">{{ 'View Detail'|trans }}</a>
+                                <a class="dropdown-item" href="{{ path('job_delete', {'id': job.id}) }}">{{ 'Delete'|trans }}</a>
+                            </div>
+                        </div>
+                    </div><!-- /.system-row-cell -->
+                </div><!-- /.system-row -->
+            {% endfor %}
+        </div><!-- /.system-table -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(jobs) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

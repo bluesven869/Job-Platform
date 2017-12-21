@@ -1,0 +1,48 @@
+{% extends 'FrontBundle::sidebar.html.twig' %}
+
+{% set header_active = 'companies' %}
+
+{% block title %}{{ 'Companies'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Companies'|trans }}{% endblock %}
+
+{% block sidebar %}
+    <div class="widget widget-filter">
+        <h2>{{ 'Refine Search'|trans }}</h2>
+
+        {{ form_start(filter, {'name': 'filter-companies-form'}) }}
+        {{ form_widget(filter) }}
+        {{ form_end(filter) }}
+    </div><!-- /.widget-filter -->
+
+    <div class="partner-block center-image">
+        <h2>{{ 'Create New Developer Account'|trans }}</h2>
+        <h3>{{ 'Detailed Oriented Profiles Gets Brilliant Clients'|trans }}</h3>
+        <a href="#" class="btn btn-primary">{{ 'Create Account'|trans }}</a>
+    </div><!-- /.widget-partner -->
+{% endblock %}
+
+{% block content %}
+    {% if companies|length %}
+        <div class="page-title">
+            <h2>
+                {% set count = companies.getTotalItemCount %}
+                {% transchoice count %}
+                    {0} %count% companies matching query|{1} %count% company matching query|]1,Inf[%count% companies matching query
+                {% endtranschoice %}
+            </h2>
+        </div><!-- /.page-title -->
+
+        <div class="companies">
+            {% for company in companies %}
+                {% include 'FrontBundle::Companies/company.html.twig' %}
+            {% endfor %}
+        </div><!-- /.jobs -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(companies) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+.pagination {
+  font-size: 12px;
+  margin: 30px 0 0 0;
+  text-align: center;
+  width: 100%;
+
+  .page-item {
+    display: inline-block;
+  }
+
+  .page-link {
+    border: 1px solid rgba(#000, .06) !important;
+    color: $color-black;
+    margin: 0 10px;
+    padding: 12px 22px;
+    text-decoration: none;
+    transition: all .2s ease;
+
+    &:hover {
+      background-color: #fff !important;
+    }
+  }
+
+  .page-item:first-child .page-link,
+  .page-item:last-child .page-link {
+    border-radius: 0;
+  }
+
+  .page-item.active .page-link {
+    background-color: $color-primary;
+    border-color:  $color-primary;
+
+    &:active, &:focus, &:hover {
+      background-color: $color-primary !important;
+      border-color:  $color-primary !important;
+    }
+  }
+}

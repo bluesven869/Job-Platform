@@ -1,0 +1,68 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'searches' %}
+
+{% block title %}{{ 'Searches'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Searches'|trans }}{% endblock %}
+
+{% block body_class %}content-simple{% endblock %}
+
+{% block content %}
+    {% if searches|length %}
+        <div class="system-table">
+            <div class="system-head">
+                <div class="system-head-cell min-width">
+                    {{ 'ID'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'Query'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell right">
+                    {{ 'Created'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell"></div><!-- /.system-head-cell -->
+            </div><!-- /.system-head -->
+
+            {% for search in searches %}
+                <div class="system-row">
+                    <div class="system-row-cell system-id">
+                        #{{ search.getId() }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title">
+                        <h3>
+                            <a href="{{ path('job_list') }}?{{ search.getQuery() }}">{{ search.getQuery() }}</a>
+                        </h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-date">
+                        {{ search.getCreated()|date("F jS \\a\\t g:ia") }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-actions">
+
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ 'Choose Action'|trans }}
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ path('search_delete', {'id': search.getId()}) }}">{{ 'Delete'|trans }}</a>
+                            </div>
+                        </div>
+                    </div><!-- /.system-row-cell -->
+                </div><!-- /.system-row -->
+            {% endfor %}
+        </div><!-- /.system-table -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(searches) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

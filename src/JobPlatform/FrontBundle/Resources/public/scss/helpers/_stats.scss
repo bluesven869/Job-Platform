@@ -1,0 +1,29 @@
+.stats {
+  text-align: center;
+
+  strong {
+    color: rgba(#fff, .8);
+    display: block;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  span {
+    font-size: 48px;
+    font-weight: 200;
+  }
+}
+
+.stat-item-wrapper {
+  @include media-breakpoint-up(lg) {
+    border-right: 1px solid rgba(#fff, .5);
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: 30px;
+  }
+}

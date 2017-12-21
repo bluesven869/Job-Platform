@@ -1,0 +1,78 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% block title %}{{ 'Shopping Cart'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Shopping Cart'|trans }}{% endblock %}
+
+{% block content %}
+    {% if products|length %}
+        <div class="cart-content">
+            {% for product in products %}
+                <div class="cart-content-item">
+                        {% spaceless %}
+                            {% if product.type == 'pay_for_publish' %}
+                                <div class="cart-content-item-cell min-width remove">
+                                    <a href="{{ path('cart_delete', {'type': 'pay_for_publish', 'job_id': product.job_id}) }}"><i class="fa fa-close"></i></a>
+                                </div><!-- /.cart-content-item-cell -->
+
+                                <div class="cart-content-item-cell">
+                                    <h3>{{ 'Publish job'|trans }} <a href="{{ path('job_show', {'id': product.job_id}) }}">{{ product.job.getName() }}</a></h3>
+
+                                    <p>
+                                        {% set count = product.duration %}
+                                        {% transchoice count %}
+                                            {0} Will be published for %count% days|{1} Will be published for %count% day|]1,Inf[ Will be published for %count% days
+                                        {% endtranschoice %}
+                                    </p>
+                                </div><!-- /.cart-content-item-cell -->
+                            {% elseif product.type == 'pay_for_featured' %}
+                                <div class="cart-content-item-cell min-width remove">
+                                    <a href="{{ path('cart_delete', {'type': 'pay_for_featured', 'job_id': product.job_id}) }}"><i class="fa fa-close"></i></a>
+                                </div><!-- /.cart-content-item-cell -->
+
+                                <div class="cart-content-item-cell">
+                                    <h3>{{ 'Feature job'|trans }} <a href="{{ path('job_show', {'id': product.job_id}) }}">{{ product.job.getName() }}</a></h3>
+
+                                    <p>
+                                        {% set count = product.duration %}
+                                        {% transchoice count %}
+                                        {0} Will be featured for %count% days|{1} Will be featured for %count% day|]1,Inf[ Will be featured for %count% days
+                                        {% endtranschoice %}
+                                    </p>
+                                </div><!-- /.cart-content-item-cell -->
+                            {% endif %}
+                        {% endspaceless %}
+
+                    <div class="cart-content-item-cell right min-width price">
+                        {{ product.price|localizedcurrency(currency) }}
+                    </div>
+                </div><!-- /.cart-content-item -->
+            {% endfor %}
+        </div><!-- /.cart-content -->
+
+        <div class="cart-content-total">
+            <span>{{ 'Total Price'|trans }}</span>
+            <strong>{{ total|localizedcurrency(currency) }}</strong>
+        </div>
+
+
+        <div class="cart-actions">
+            <a href="{{ path('cart_empty') }}" class="btn">{{ 'Empty cart'|trans }}</a>
+
+            <a href="{{ path('checkout') }}" class="btn btn-primary">{{ 'Proceed to checkout'|trans }}</a>
+        </div><!-- /.cart-actions -->
+    {% else %}
+        <div class="empty">
+            <div class="empty-icon-wrapper">
+                <div class="empty-icon">
+                    <i class="fa fa-shopping-cart"></i>
+                </div><!-- /.empty-icon -->
+            </div><!-- /.empty-icon-wrapper -->
+
+            <h4>{{ 'No products found'|trans }}</h4>
+            <p>{{ 'It looks like that you don\'t have any product in your cart.' }}</p>
+
+            <a href="{{ path('homepage') }}" class="btn btn-primary">{{ 'Back to homepage'|trans }}</a>
+        </div><!-- /.empty -->
+    {% endif %}
+{% endblock %}

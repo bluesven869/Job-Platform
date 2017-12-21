@@ -1,0 +1,31 @@
+.breadcrumb {
+  background-color: transparent;
+  border-radius: 0;
+  color: rgba($color-black, .5);
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin: -20px 0 20px 0;
+  padding: 0;
+  white-space: nowrap;
+
+  a {
+    color: rgba($color-black, .5);
+  }
+
+  .breadcrumb-item {
+    display: inline-block;
+    float: none;
+
+    &.active {
+      color: rgba($color-black, .5);
+    }
+
+    &:before {
+      color: rgba($color-black, .5);
+      font-size: 10px;
+      margin: 0 12px;
+      padding: 0;
+    }
+  }
+}

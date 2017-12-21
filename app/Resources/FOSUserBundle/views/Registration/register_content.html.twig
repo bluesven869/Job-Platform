@@ -1,0 +1,23 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h1>{{ 'Account Registration'|trans }}</h1>
+
+<p>
+    {% trans with {'%link%': path('fos_user_security_login')} %}
+        Already have an account? <a href="%link%">Sign in</a> and start creating new jobs or profile.
+    {% endtrans %}
+</p>
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+
+    <div class="clearfix">
+        <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+    </div>
+
+    <ul>
+        <li><a href="{{ path('homepage') }}">{{ 'Return Back'|trans }}</a></li>
+        <li><a href="{{ path('fos_user_security_login') }}">{{ 'Sign In'|trans }}</a></li>
+        <li><a href="{{ path('fos_user_resetting_request') }}">{{ 'Forgot Password?'|trans }}</a></li>
+    </ul>
+{{ form_end(form) }}

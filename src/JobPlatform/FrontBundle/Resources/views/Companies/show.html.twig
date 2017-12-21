@@ -1,0 +1,159 @@
+{% extends 'FrontBundle::sidebar_right.html.twig' %}
+
+{% set header_active = 'companies' %}
+
+{% block title %}{{ company.getName() }}{% endblock %}
+
+{% block page_header %}{{ 'Company'|trans }}{% endblock %}
+
+{% block sidebar %}
+    {% if company.getLatitude() and company.getLongitude() %}
+
+        <div class="widget widget-map">
+            <div id="map-container" data-latitude="{{ company.getLatitude() }}" data-longitude="{{ company.getLongitude() }}"></div>
+            {% if company.getAddress() %}
+                <address>
+                    {{ company.getAddress()|nl2br }}
+                </address>
+            {% endif %}
+
+            <a href="https://maps.google.com?daddr={{ company.getLatitude() }},{{ company.getLongitude() }}" class="get-direction">
+                {{ 'Get Directions'|trans }} <i class="fa fa-long-arrow-right"></i>
+            </a>
+        </div>
+    {% endif %}
+
+    {% if recent_jobs|length %}
+        <div class="widget widget-items-small">
+            <h2>{{ 'Recent Jobs'|trans }}</h2>
+
+            <div class="items-small">
+                {% for job in recent_jobs %}
+                    <div class="item-small">
+                        <div class="item-small-title">
+                            <h3><a href="{{ path('job_show', {'id': job.getId()}) }}">{{ job.getName() }}</a></h3>
+                            <h4><a href="{{ path('company_show', {'id': job.getCompany().getId()}) }}">{{ job.getCompany().getName() }}</a></h4>
+                        </div>
+
+                        <div class="item-small-more">
+                            <a href="{{ path('job_show', {'id': job.getId()}) }}"><i class="fa fa-chevron-right"></i></a>
+                        </div><!-- /.item-small-more -->
+                    </div><!-- /.item-small -->
+                {% endfor %}
+            </div><!-- /.items-small -->
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="content-blocks">
+        <div class="content-block">
+            <h3>{{ company.getName() }}</h3>
+
+            {% if company.getAddress() %}
+                <address class="company-address">
+                    {{ company.getAddress()|nl2br }}
+                </address><!-- /.company-address -->
+            {% endif %}
+
+            {% if company.getDescription() %}
+                {{ company.getDescription()|striptags('<ol><ul><li><i><b><a><p>')|raw }}
+            {% endif %}
+
+            <div class="profile-items">
+                {% if company.getEmail() %}
+                    <div class="profile-phone">
+                        <strong>{{ 'E-mail'|trans }}:</strong>
+                        <span>{{ company.getEmail() }}</span>
+                    </div><!-- /.profile-phone -->
+                {% endif %}
+
+                {% if company.getPhone() %}
+                    <div class="profile-phone">
+                        <strong>{{ 'Phone'|trans }}:</strong>
+                        <span><a href="{{ company.getPhone() }}">{{ company.getPhone() }}</a></span>
+                    </div><!-- /.profile-phone -->
+                {% endif %}
+
+                {% if company.getWebsite() %}
+                    <div class="profile-website">
+                        <strong>{{ 'Website'|trans }}:</strong>
+                        <span><a href="{{ company.getWebsite() }}">{{ company.getWebsite() }}</a></span>
+                    </div><!-- /.profile-website -->
+                {% endif %}
+            </div><!-- /.profiles-items -->
+        </div><!-- /.content-block -->
+
+        {% if company.getFacebook() or company.getTwitter() or company.getTwitter() %}
+            <div class="content-block">
+                <h3>{{ 'Social Profiles'|trans }}</h3>
+
+                <ul class="content-social">
+                    <li>
+                        {% if company.getFacebook() %}
+                            <a href="{{ company.getFacebook() }}"><i class="fa fa-facebook-square"></i> Facebook</a>
+                        {% endif %}
+                    </li>
+
+                    <li>
+                        {% if company.getTwitter() %}
+                            <a href="{{ company.getFacebook() }}"><i class="fa fa-twitter-square"></i> Twitter</a>
+                        {% endif %}
+                    </li>
+
+                    <li>
+                        {% if company.getTwitter() %}
+                            <a href="{{ company.getLinkedin() }}"><i class="fa fa-linkedin-square"></i> LinkedIn</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div><!-- /.content-block -->
+        {% endif %}
+
+        {% if jobs %}
+            <div class="content-block">
+                <h3>{{ 'Created Job Positions'|trans }}</h3>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="min-width center">{{ 'ID'|trans }}</th>
+                            <th>{{ 'Title'|trans }}</th>
+                            <th class="min-width right">{{ 'Created'|trans }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for job in jobs %}
+                            <tr>
+                                <td class="min-width center bold">#{{ job.getId() }}</td>
+
+                                <td>
+                                    <a href="{{ path('job_show', {'id': job.getId()}) }}" class="simple-link">{{ job.getName() }}</a>
+                                </td>
+
+                                <td class="min-width right not-important">
+                                    {{ job.getCreated()|date("F jS") }}
+                                </td>
+
+                                <td class="min-width">
+                                    <a href="{{ path('job_show', {'id': job.getId() }) }}">View Job <i class="fa fa-chevron-right"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- /.content-block -->
+        {% endif %}
+
+        <div class="content-block">
+            <h3>{{ 'Contact Company'|trans }}</h3>
+            <div class="contact-form">
+                {{ form_start(contactForm) }}
+                {{ form_widget(contactForm) }}
+                {{ form_end(contactForm) }}
+            </div><!-- /.contact-form -->
+        </div><!-- /.content-block -->
+    </div><!-- /.content-blocks -->
+{% endblock %}

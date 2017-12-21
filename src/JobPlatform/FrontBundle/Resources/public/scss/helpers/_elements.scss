@@ -1,0 +1,122 @@
+html {
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: $color-background;
+  color: $color-black;
+  font-family: 'Poppins', 'Arial', sans-serif;
+  font-size: 13px;
+  min-height: 100%;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+a {
+  color: $color-primary;
+  transition: color .2s ease;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+strong, b {
+  color: $color-black;
+  font-weight: 500;
+}
+
+p {
+  line-height: 2;
+}
+
+address {
+  color: rgba($color-black, .7);
+  font-style: italic;
+}
+
+.table {
+  margin: 0;
+  padding: 0;
+
+  thead {
+    th {
+      border-color: rgba(#000, .04);
+      border: 0;
+      color: rgba($color-black, .5);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 8px 20px;
+      text-transform: uppercase;
+
+      &.right {
+        text-align: right;
+      }
+
+      &.center {
+        text-align: center;
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  tbody {
+    td {
+      border-color: rgba(#000, .04);
+      padding: 16px 20px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      a {
+        text-decoration: none;
+
+        .fa {
+          font-size: 8px;
+          margin: 0 0 0 2px;
+          vertical-align: middle;
+        }
+
+        &.simple-link {
+          color: rgba($color-black, .7);
+          text-decoration: none;
+        }
+      }
+
+      &.bold {
+        color: $color-black;
+        font-weight: 500;
+      }
+
+      &.center {
+        text-align: center;
+      }
+
+      &.min-width {
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      &.right {
+        text-align: right;
+      }
+
+      &.not-important {
+        color: rgba($color-black, .5);
+      }
+    }
+  }
+}

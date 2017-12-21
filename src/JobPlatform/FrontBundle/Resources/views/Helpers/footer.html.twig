@@ -1,0 +1,91 @@
+<div class="footer-wrapper footer-dark">
+    <div class="footer">
+        <div class="container">
+            <div class="container-inner">
+                <div class="row footer-actions-wrapper">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="footer-action footer-action-left">
+                            <i class="fa fa-comments-o"></i>
+                            <strong>{{ 'Need support by our staff?'|trans }}</strong>
+                            <a href="#">{{ 'Support'|trans }} <i class="fa fa-chevron-right"></i></a>
+                        </div><!-- /.footer-action -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="footer-action footer-action-right">
+                            <i class="fa fa-at"></i>
+                            <strong>{{ 'Looking for cooperation?'|trans }}</strong>
+                            <a href="#">{{ 'Contact'|trans }} <i class="fa fa-chevron-right"></i></a>
+                        </div><!-- /.footer-action -->
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container-inner -->
+        </div><!-- /.container -->
+
+        <div class="container">
+            <div class="container-inner">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-menu">
+                            <li class="nav-item"><a href="{{ path('job_list') }}" class="nav-link">{{ 'Jobs'|trans }}</a></li>
+                            <li class="nav-item"><a href="{{ path('company_list') }}" class="nav-link">{{ 'Companies'|trans }}</a></li>
+                            <li class="nav-item"><a href="{{ path('profile_list') }}" class="nav-link">{{ 'Candidates'|trans }}</a></li>
+                            <li class="nav-item"><a href="{{ path('fos_user_registration_register') }}" class="nav-link">{{ 'Registration'|trans }}</a></li>
+                            <li class="nav-item"><a href="{{ path('fos_user_security_login') }}" class="nav-link">{{ 'Sign In'|trans }}</a></li>
+                            <li class="nav-item"><a href="{{ path('fos_user_resetting_request') }}" class="nav-link">{{ 'Lost Password'|trans }}</a></li>
+                        </ul>
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container-inner -->
+        </div><!-- /.container -->
+
+        <div class="container">
+            <div class="container-inner">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>
+                            {% trans %}Job Platform is an advanced job directory &amp; listings application completely written
+                            in Symfony framework. With the Job Platform you are able to create your web application
+                            in no time. Symfony makes site easy customizable and flexible for all developers with the
+                            intermediate knowledge and experience of framework.{% endtrans %}
+                        </p>
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container-inner -->
+        </div><!-- /.container -->
+
+        <div class="container footer-bottom">
+            <div class="container-inner">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="footer-bottom-first">
+                            &copy; {{ "now"|date('Y') }} {% trans %}Created by <a href="http://wearecodevision.com">Code Vision</a>. All rights reserved.{% endtrans %}
+                        </div><!-- /.footer-bottom-first -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="footer-bottom-second">
+                            <ul class="nav nav-social">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><i class="fa fa-facebook"></i></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><i class="fa fa-linkedin"></i></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><i class="fa fa-twitter"></i></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><i class="fa fa-vimeo"></i></a>
+                                </li>
+                            </ul>
+                        </div><!-- /.footer-bottom-second -->
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.footer -->
+</div><!-- /.footer-wrapper -->

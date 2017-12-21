@@ -1,0 +1,23 @@
+{% extends 'FrontBundle::base.html.twig' %}
+
+{% block body %}
+    {% block body_above %}{% endblock %}
+
+    <div class="main">
+        <div class="row">
+            <div class="col-lg-4 col-xl-3">
+                <div class="sidebar">
+                    {% block sidebar %}{% endblock %}
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-* -->
+
+            <div class="col-lg-8 col-xl-9">
+                <div class="content">
+                    {% block content %}{% endblock %}
+                </div><!-- /.content -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.main -->
+
+    {% block body_below %}{% endblock %}
+{% endblock %}

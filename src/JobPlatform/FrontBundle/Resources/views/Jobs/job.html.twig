@@ -1,0 +1,72 @@
+<div class="item-wrapper">
+    <div class="job">
+        {% if job.getIsFeatured() %}
+            <span class="item-badge">{{ 'Featured'|trans }}</span>
+        {% endif %}
+
+        <div class="item-title">
+            <h3>
+                <a href="{{ path('job_show', {'id': job.id}) }}">{{ job.name }}</a>
+            </h3>
+
+            {% if job.getCategories()|length > 0 %}
+                <ul class="item-categories">
+                    <li>
+                        <span>
+                            {% for category in job.getCategories() %}
+                                <a href="{{ path('category_list', {'slug': category.slug}) }}">{{ category }}</a>
+                            {% endfor %}
+                        </span>
+                    </li>
+                </ul>
+            {% endif %}
+
+            <div class="item-favorite">
+                {% if job.isFavoriteByUser(app.getUser()) %}
+                    <a href="{{ path('favorite_remove', {'id': job.id}) }}" class="favorite-no">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                {% else %}
+                    <a href="{{ path('favorite_add', {'id': job.id}) }}" class="favorite-yes">
+                        <i class="fa fa-heart-o"></i>
+                    </a>
+                {% endif %}
+            </div><!-- /.item-favorite -->
+        </div><!-- /.item-title -->
+
+        <ul class="item-meta">
+            {% if job.getPrice() %}
+                <li class="item-meta-price">
+                    <span>{{ job.getPrice()|localizedcurrency(currency) }}</span>
+                </li>
+            {% endif %}
+
+            {% if job.getContract() %}
+                <li>
+                    <i class="fa fa-file"></i> <span>{{ job.getContract() }}</span>
+                </li>
+            {% endif %}
+
+            {% if job.getCompany() %}
+                <li>
+                    <i class="fa fa-users"></i> <span><a href="{{ path('company_show', {'id': job.getCompany().getId()}) }}">{{ job.getCompany() }}</a></span>
+                </li>
+            {% endif %}
+
+            {% if job.getCountry() %}
+                <li>
+                    <i class="fa fa-map-marker"></i> <span>{{ job.getCountryName() }}</span>
+                </li>
+            {% endif %}
+
+            <li>
+                <i class="fa fa-clock-o"></i> <span>{{ job.getCreated()|date("F jS") }}</span>
+            </li>
+
+        </ul><!-- /.item-meta -->
+
+        <div class="item-description">
+            {{ job.description|striptags[:200] ~ '...' }}
+        </div><!-- /.item-description -->
+    </div><!-- /.job -->
+</div><!-- /.item-wrapper -->

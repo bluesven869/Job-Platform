@@ -1,0 +1,18 @@
+{% extends "FrontBundle::split.html.twig" %}
+
+{% block title %}{{ 'Account Registration'|trans }}{% endblock %}
+
+{% block content %}
+    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    <h1>{{ 'Boost your business by finding great people or start new live by finding job.'|trans }}</h1>
+    <ul>
+        <li>{{ 'Post Job Offers'|trans }}</li>
+        <li>{{ 'Build New Businesses'|trans }}</li>
+        <li>{{ 'Create Brilliant Resumes'|trans }}</li>
+        <li>{{ 'Search Non Public Profiles'|trans }}</li>
+        <li>{{ 'Look for Carrer Oppurtinities'|trans }}</li>
+    </ul>
+{% endblock %}

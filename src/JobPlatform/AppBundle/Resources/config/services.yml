@@ -1,0 +1,75 @@
+services:
+    twig.extension.cart:
+        class: JobPlatform\AppBundle\Twig\CartExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+    twig.extension.global:
+        class: JobPlatform\AppBundle\Twig\GlobalExtension
+        public: false
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension }
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+    # Subscribers
+    job_platform.user_subscriber:
+        class: JobPlatform\AppBundle\EventListener\UserSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_subscriber }
+    job_platform.order_subscriber:
+        class: JobPlatform\AppBundle\EventListener\OrderSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+    job_platform.application_subscriber:
+        class: JobPlatform\AppBundle\EventListener\ApplicationSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    # Sonata Admin
+    admin.category:
+        class: JobPlatform\AppBundle\Admin\CategoryAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
+    admin.contract:
+        class: JobPlatform\AppBundle\Admin\ContractAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\Contract, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Contract }
+    admin.company:
+        class: JobPlatform\AppBundle\Admin\CompanyAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\Company, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Company }
+    admin.profile:
+        class: JobPlatform\AppBundle\Admin\ProfileAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\Profile, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Profile }
+    admin.job:
+        class: JobPlatform\AppBundle\Admin\JobAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\Job, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Job }
+    admin.order:
+        class: JobPlatform\AppBundle\Admin\OrderAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\Order, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Order }
+    admin.project_type:
+        class: JobPlatform\AppBundle\Admin\ProjectTypeAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\ProjectType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Project Type' }
+    admin.user:
+        class: JobPlatform\AppBundle\Admin\UserAdmin
+        arguments: [~, JobPlatform\AppBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: User }

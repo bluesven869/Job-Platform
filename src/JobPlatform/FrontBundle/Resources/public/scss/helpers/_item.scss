@@ -1,0 +1,284 @@
+/*************************************************************
+ * Item large
+ *************************************************************/
+.item-wrapper {
+  border-bottom: 1px solid rgba(#000, .04);
+  margin: 0 0 30px 0;
+  padding: 0 0 30px 0;
+  position: relative;
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+
+    &:after {
+      bottom: 0;
+    }
+  }
+
+  &:after {
+    background-color: $color-primary;
+    bottom: 25px;
+    content: '';
+    display: block;
+    left: -25px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .2s ease;
+    width: 2px;
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.item-badge {
+  background-color: $color-primary;
+  color: #fff;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  padding: 2px 10px;
+  text-transform: uppercase;
+}
+
+.item-title {
+  margin: 0 0 10px 0;
+  position: relative;
+
+  h3 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  a {
+    color: $color-black;
+    text-decoration: none !important;
+  }
+
+  .item-categories {
+    display: inline-block;
+  }
+}
+
+.item-title-image {
+  float: right;
+  position: relative;
+
+  img {
+    display: block;
+    height: 28px;
+    margin: 8px 0 0 0;
+    width: auto;
+  }
+}
+
+.item-description {
+  color: rgba($color-black, .7);
+  line-height: 2;
+  margin: 20px 0 0 0;
+
+  p {
+    line-height: 2;
+  }
+
+  .morelink {
+    color: $color-primary;
+    font-weight: 500;
+  }
+}
+
+.item-meta-price, .item-meta-count {
+  span {
+    color: $color-green;
+    font-weight: 500;
+  }
+}
+
+.item-categories, .item-meta {
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  strong {
+    color: rgba($color-black, .5);
+    font-weight: 500;
+    margin: 0 5px 0 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+}
+
+.item-categories {
+  margin: 0 0 0 10px;
+  vertical-align: middle;
+
+  @include media-breakpoint-down(xs) {
+    margin: 5px 0 15px 0;
+  }
+
+  li {
+    a {
+      background-color: rgba(#000, .04);
+      color: rgba($color-black, .5);
+      display: inline-block;
+      font-size: 11px;
+      line-height: 2;
+      margin: 0 5px 0 0;
+      padding: 0 7px;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-black;
+      }
+    }
+  }
+}
+
+.item-meta {
+  color: rgba($color-black, .7);
+  margin: -5px 0 0 0;
+
+  .fa {
+    color: rgba($color-black, .2);
+    margin: 0 3px 0 0;
+  }
+
+  li {
+    margin: 0 10px 0 0;
+
+    @include media-breakpoint-down(xs) {
+      margin: 0 10px 10px 0;
+    }
+  }
+
+  a {
+    color: rgba($color-black, .7);
+    text-decoration: none !important;
+  }
+}
+
+.item-favorite {
+  float: right;
+  font-size: 16px;
+
+  .fa {
+    color: $color-primary;
+  }
+
+  .favorite-yes {
+    .fa {
+      color: rgba($color-black, .2);
+    }
+  }
+}
+
+.item-image-wrapper {
+  border-radius: 50%;
+  float: left;
+  margin: 0 20px 0 0;
+  position: relative;
+}
+
+.item-image {
+  img {
+    border-radius: 50%;
+    box-shadow: 0 2px 3px rgba(#000, .12);
+    display: block;
+    height: 38px;
+    width: 38px;
+  }
+}
+
+.item-image-placeholder {
+  background-image: radial-gradient(lighten($color-primary, 10%), $color-primary);
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 500;
+  height: 38px;
+  line-height: 40px;
+  margin: 3px 0 0 0;
+  text-align: center;
+  width: 38px;
+}
+
+.verified {
+  background-color: $color-green;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 9px;
+  height: 15px;
+  letter-spacing: -1px;
+  position: absolute;
+  right: -3px;
+  text-align: center;
+  top: -3px;
+  width: 15px;
+}
+
+/*************************************************************
+ * Item small
+ *************************************************************/
+
+.item-small {
+  border-bottom: 1px solid rgba(#000, .04);
+  margin: 0 -20px;
+  padding: 15px 20px;
+  position: relative;
+
+  &:first-child {
+    margin-top: -20px
+  }
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: -20px;
+  }
+}
+
+.item-small-title {
+  h3 {
+    color: $color-black;
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    overflow: hidden;
+    padding-rigth: 35px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    a {
+      color: $color-black;
+    }
+  }
+
+  h4 {
+    font-size: 12px;
+    font-weight: 400;
+
+    a {
+      color: rgba($color-black, .7);
+    }
+  }
+}
+
+.item-small-more {
+  font-size: 10px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}

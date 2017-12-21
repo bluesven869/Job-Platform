@@ -1,0 +1,65 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'proposals' %}
+
+{% block title %}{{ 'Proposals'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Proposals'|trans }}{% endblock %}
+
+{% block body_class %}content-simple{% endblock %}
+
+{% block content %}
+    {% if applications|length > 0 %}
+        <div class="system-table">
+            <div class="system-head">
+                <div class="system-head-cell min-width">
+                    {{ 'ID'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell">
+                    {{ 'Job Position'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell right">
+                    {{ 'Created'|trans }}
+                </div><!-- /.system-head-cell -->
+
+                <div class="system-head-cell"></div><!-- /.system-head-cell -->
+            </div><!-- /.system-head -->
+
+            {% for application in applications %}
+                <div class="system-row">
+                    <div class="system-row-cell system-id">
+                        #{{ application.getId() }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-title">
+                        <h3><a href="{{ path('job_show', {'id': application.job.getId() }) }}">{{ application.job.getName() }}</a></h3>
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-date">
+                        {{ application.getCreated()|date("F jS \\a\\t g:ia") }}
+                    </div><!-- /.system-row-cell -->
+
+                    <div class="system-row-cell system-actions">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ 'Choose Action'|trans }}
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ path('application_withdraw', {'id': application.job.getId()}) }}">{{ 'Withdraw'|trans }}</a>
+                            </div>
+                        </div>
+                    </div><!-- /.system-row-cell -->
+                </div><!-- /.system-row -->
+            {% endfor %}
+        </div><!-- /.system-table -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(applications) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

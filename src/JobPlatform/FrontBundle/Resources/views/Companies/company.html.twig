@@ -1,0 +1,45 @@
+<div class="item-wrapper">
+    <div class="job">
+        <div class="item-title">
+            <h3>
+                <a href="{{ path('company_show', {id: company.getId() }) }}">{{ company.getName() }}</a>
+            </h3>
+
+            {% if company.getLogoName() %}
+                <div class="item-title-image">
+                    <img src="{{ vich_uploader_asset(company, 'logoImage') }}" alt="{{ company.getName() }}">
+
+                    {% if company.isVerified() %}
+                        <div class="verified">
+                            <i class="fa fa-check"></i>
+                        </div><!-- /.verified -->
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div><!-- /.item-title -->
+
+        <ul class="item-meta">
+            <li class="item-meta-count">
+                <span>
+                    {% set count_jobs = jobRepository.getCompanyCount(company) %}
+
+                    {% transchoice count_jobs %}
+                        {0} No posted job|{1} %count_jobs% job|]1,Inf] %count_jobs% posted jobs
+                    {% endtranschoice %}
+                </span>
+            </li>
+
+            {% if company.getCountry() %}
+                <li>
+                    <i class="fa fa-map-marker"></i> <span>{{ company.getCountryName() }}</span>
+                </li>
+            {% endif %}
+        </ul><!-- /.item-meta -->
+
+        {% if company.description %}
+            <div class="item-description">
+                {{ company.description|striptags[:200] ~ '...' }}
+            </div><!-- /.item-description -->
+        {% endif %}
+    </div><!-- /.job -->
+</div><!-- /.item-wrapper -->

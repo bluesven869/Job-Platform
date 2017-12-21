@@ -1,0 +1,11 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% block title %}{{ 'Settings'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Settings'|trans }}{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,53 @@
+<div class="header-bottom">
+    <h3 class="header-title">{{ 'Actions'|trans }}</h3>
+    
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and active == 'companies' %}active{% endif %}" href="{{ path('company_my') }}">{{ 'Companies'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and active == 'jobs' %}active{% endif %}" href="{{ path('job_my') }}">{{ 'Jobs'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and active == 'applicants' %}active{% endif %}" href="{{ path('application_applicants') }}">{{ 'Applicants'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and active == 'proposals' %}active{% endif %}" href="{{ path('application_proposals') }}">{{ 'Proposals'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and  active == 'favorites' %}active{% endif %}" href="{{ path('favorite_list') }}">{{ 'Favorites'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and  active == 'orders' %}active{% endif %}" href="{{ path('orders') }}">{{ 'Orders'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and  active == 'searches' %}active{% endif %}" href="{{ path('search_my') }}">{{ 'Searches'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if active is defined and  active == 'profile' %}active{% endif %}" href="#">
+                {{ 'Profile'|trans }} <i class="fa fa-caret-down"></i>
+            </a>
+
+            <ul class="nav nav-stacked">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('profile_update_general') }}">{{ 'General'|trans }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('profile_update_education') }}">{{ 'Educations'|trans }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('profile_update_experience') }}">{{ 'Experiences'|trans }}</a>
+                </li>
+            </ul>
+        </li>
+    </ul><!-- /.nav -->
+</div><!-- /.header-bottom -->

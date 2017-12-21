@@ -1,0 +1,50 @@
+{% extends 'FrontBundle::sidebar.html.twig' %}
+
+{% set header_active = 'profiles' %}
+
+{% block title %}{{ 'Candidates'|trans }}{% endblock %}
+
+{% block page_header %}
+    {{ 'Candidates'|trans }}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="widget widget-filter">
+        <h2>{{ 'Refine Search'|trans }}</h2>
+
+        {{ form_start(filter, {'name': 'filter-candidates-form'}) }}
+        {{ form_widget(filter) }}
+        {{ form_end(filter) }}
+    </div><!-- /.widget-filter -->
+
+    <div class="partner-block center-image">
+        <h2>{{ 'Create New Developer Account'|trans }}</h2>
+        <h3>{{ 'Detailed Oriented Profiles Gets Brilliant Clients'|trans }}</h3>
+        <a href="#" class="btn btn-primary">{{ 'Create Account'|trans }}</a>
+    </div><!-- /.widget-partner -->
+{% endblock %}
+
+{% block content %}
+    {% if profiles|length %}
+        <div class="page-title">
+            <h2>
+                {% set count = profiles.getTotalItemCount %}
+                {% transchoice count %}
+                    {0} %count% candidates matching query|{1} %count% candidate matching query|]1,Inf[%count% candidates matching query
+                {% endtranschoice %}
+            </h2>
+        </div><!-- /.page-title -->
+
+        <div class="profiles">
+            {% for profile in profiles %}
+                {% include 'FrontBundle::Profiles/profile.html.twig' %}
+            {% endfor %}
+        </div><!-- /.profiles -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(profiles) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

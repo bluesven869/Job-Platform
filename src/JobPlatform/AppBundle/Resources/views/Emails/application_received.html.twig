@@ -1,0 +1,9 @@
+{% trans with {
+    '%profile_name%': application.getUser().getProfile().getDisplayName(),
+    '%profile_path%': app.request.getSchemeAndHttpHost()~path('profile_show', {'id': application.getUser().getProfile().getId()}),
+    '%job_name%': application.getJob().getName(),
+    '%job_path%': app.request.getSchemeAndHttpHost()~path('job_show', {'id': application.getJob().getId()})} %}
+Hi,
+
+new application for job <a href="%job_path%">%job_name%</a> has been received from applicant <a href="%profile_path%">%profile_name%</a>.
+{% endtrans %}

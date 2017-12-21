@@ -1,0 +1,60 @@
+{% extends 'FrontBundle::sidebar.html.twig' %}
+
+{% set header_active = 'jobs' %}
+
+{% block title %}{{ 'Jobs'|trans }}{% endblock %}
+
+{% block page_header %}
+    {{ 'Find Work'|trans }}
+{% endblock %}
+
+{% block page_header_additional %}
+    <div class="widget widget-filter-large">
+        {{ form_start(filterKeyword, {'name': 'filter-jobs-keyword-form'}) }}
+        {{ form_widget(filterKeyword) }}
+        {{ form_end(filterKeyword) }}
+    </div><!-- /.widget-filter-large -->
+{% endblock %}
+
+{% block sidebar %}
+    <div class="widget widget-filter">
+        <h2>{{ 'Filter Jobs'|trans }}</h2>
+
+        {{ form_start(filter, {'name': 'filter-jobs-form'}) }}
+        {{ form_widget(filter) }}
+        {{ form_end(filter) }}
+    </div><!-- /.widget-filter -->
+
+    <div class="partner-block bottom-image">
+        <h2>{{ 'Freelance Talents Needed'|trans }}</h2>
+        <h3>{{ 'Start Your Carreer As iOS Developer'|trans }}</h3>
+        <a href="#" class="btn btn-primary">{{ 'Apply Now'|trans }}</a>
+    </div><!-- /.widget-partner -->
+{% endblock %}
+
+{% block content %}
+    {% if jobs|length %}
+        <div class="page-title">
+            <h2>
+                {% set count = jobs.getTotalItemCount %}
+                {% transchoice count %}
+                    {0} %count% jobs matching query|{1} %count% job matching query|]1,Inf[%count% jobs matching query
+                {% endtranschoice %}
+            </h2>
+
+            <a href="{{ path('search_create', {'entity': 'job'}) }}">{{ 'Save Search Query'|trans }}</a>
+        </div><!-- /.page-title -->
+
+        <div class="jobs">
+            {% for job in jobs %}
+                {% include 'FrontBundle::Jobs/job.html.twig' %}
+            {% endfor %}
+        </div><!-- /.jobs -->
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(jobs) }}
+        </div>
+    {% else %}
+        {{ include('FrontBundle::Helpers/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

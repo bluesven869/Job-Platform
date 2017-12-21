@@ -1,0 +1,289 @@
+{% extends 'FrontBundle::base.html.twig' %}
+
+{% set navigation_hide = true %}
+
+{% block title %}{{ 'Homepage'|trans }}{% endblock %}
+
+{% block body_class %}header-transparent{% endblock %}
+
+{% block body %}
+    {{ include('FrontBundle::Helpers/hero.html.twig') }}
+
+    {{ include('FrontBundle::Helpers/partners.html.twig') }}
+
+    <div class="block">
+        <div class="page-block-title">
+            <h1>{{ 'Job Platform Features'|trans }}</h1>
+            <p>{{ 'Check some of the best features provided by Job Platform application developed in Symfony framework.'|trans }}</p>
+        </div><!-- /.page-block-title -->
+
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="box">
+                    <h2><i class="fa fa-rocket"></i> {{ 'Job Positions'|trans }}</h2>
+                    <p>{{ 'Signed in companies are able to post new job offers.'|trans }}</p>
+                </div><!-- /.box -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="box">
+                    <h2><i class="fa fa-users"></i> {{ 'Candidates'|trans }}</h2>
+                    <p>{{ 'Browse and search potential candidates for your job.'|trans }}</p>
+                </div><!-- /.box -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="box">
+                    <h2><i class="fa fa-briefcase"></i> {{ 'Companies'|trans }}</h2>
+                    <p>{{ 'Create companies which are used to post job positions.'|trans }}</p>
+                </div><!-- /.box -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="box">
+                    <h2><i class="fa fa-handshake-o"></i> {{ 'Applications'|trans }}</h2>
+                    <p>{{ 'Users are able to apply for jobs which are intersting.'|trans }}</p>
+                </div><!-- /.box -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="box">
+                    <h2><i class="fa fa-star"></i> {{ 'Favorites'|trans }}</h2>
+                    <p>{{ 'Easily collect your favorite job positions for easy access.'|trans }}</p>
+                </div><!-- /.box -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="box">
+                    <h2><i class="fa fa-search"></i> {{ 'Searches'|trans }}</h2>
+                    <p>{{ 'Save queries which could be later used to improve workflow.'|trans }}</p>
+                </div><!-- /.box -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.block -->
+
+    <div class="box-full-wrapper">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="box-full">
+                    <div class="box-full-icon">
+                        <i class="fa fa-flag-o"></i>
+                    </div><!-- /.box-full-icon -->
+
+                    <div class="box-full-content">
+                        <h2>{{ 'Businesses'|trans }}</h2>
+                        <p>
+                            In hac habitasse platea dictumst. Etiam quis eros finibus diam auctor gravida eu vitae ipsum.
+                        </p>
+
+                        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-block btn-white">
+                            {{ 'Create Account'|trans }}
+                        </a>
+                    </div><!-- /.box-full-content -->
+                </div><!-- /.box-full -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-12 col-md-6">
+                <div class="box-full">
+                    <div class="box-full-icon">
+                        <i class="fa fa-lightbulb-o"></i>
+                    </div><!-- /.box-full-icon -->
+
+                    <div class="box-full-content">
+                        <h2>{{ 'Freelancers'|trans }}</h2>
+                        <p>
+                            In hac habitasse platea dictumst. Etiam quis eros finibus diam auctor gravida eu vitae ipsum.
+                        </p>
+
+                        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-block btn-white">
+                            {{ 'Create User Profile'|trans }}
+                        </a>
+                    </div><!-- /.box-full-content -->
+                </div><!-- /.box-full -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.box-full-wrapper -->
+
+    <div class="block block-fullwidth block-background">
+        <div class="block-inner">
+            <div class="block-padding">
+                <div class="page-block-title">
+                    <h1>{{ 'Job Platform Statistics'|trans }}</h1>
+                    <p>{{ 'Check some of the best features provided by Job Platform application developed in Symfony framework.'|trans }}</p>
+                </div><!-- /.page-block-title -->
+
+                <div class="stats">
+                    <div class="container">
+                        <div class="row">
+                            <div class="stat-item-wrapper col-md-6 col-lg-3">
+                                <strong>{{ 'Projects'|trans }}</strong>
+                                <span>1600</span>
+                            </div><!-- /.stat-item-wrapper -->
+
+                            <div class="stat-item-wrapper col-md-6 col-lg-3">
+                                <strong>{{ 'Candidates'|trans }}</strong>
+                                <span>2200</span>
+                            </div><!-- /.stat-item-wrapper -->
+
+                            <div class="stat-item-wrapper col-md-6 col-lg-3">
+                                <strong>{{ 'Companies'|trans }}</strong>
+                                <span>800</span>
+                            </div><!-- /.stat-item-wrapper -->
+
+                            <div class="stat-item-wrapper col-md-6 col-lg-3">
+                                <strong>{{ 'Completed Works'|trans }}</strong>
+                                <span>3200</span>
+                            </div><!-- /.stat-item-wrapper -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div><!-- /.stats -->
+            </div><!-- /.block-padding -->
+        </div><!-- /.block-inner -->
+    </div><!-- /.block -->
+
+    <div class="block block-fullwidth-simple block-border-bottom">
+        <div class="page-block-title">
+            <h1>{{ 'Monetization Options'|trans }}</h1>
+            <p>{{ 'Check our basic application monetization options. PayPal Express Checkout and wire transfers are supported.'|trans }}</p>
+        </div><!-- /.page-block-title -->
+
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="pricing-lines">
+                    <div class="pricing-line">
+                        <div class="pricing-line-price">
+                            {{ 9.90|localizedcurrency(currency) }}
+                        </div><!-- /.pricing-line-price -->
+
+                        <div class="pricing-line-content">
+                            <h2>{{ 'Publish job'|trans }} <span>{{ 'One month period'|trans }}</span></h2>
+                            <p>{{ 'Publish your job in our catalogue for the time period specified by us. After job expiration you can publish the job position again by processing new payment.' }}</p>
+                        </div><!-- /.pricing-line-content -->
+                    </div><!-- /.pricing-line -->
+
+                    <div class="pricing-line">
+                        <div class="pricing-line-price">
+                            {{ 18.90|localizedcurrency(currency) }}
+                        </div><!-- /.pricing-line-price -->
+
+                        <div class="pricing-line-content">
+                            <h2>{{ 'Pay for featuring job'|trans }} <span>{{ 'Two weeks period'|trans }}</span></h2>
+                            <p>{{ 'One time payment for featuring job for X days. The job will appear at the top of all jobs in our catalogue. After our defined period the job will be remove from featured.' }}</p>
+                        </div><!-- /.pricing-line-content -->
+                    </div><!-- /.pricing-line -->
+                </div><!-- /.pricing-lines -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.block -->
+
+    <div class="block block">
+        <div class="page-block-title">
+            <h1>{{ 'What Clients Say?'|trans }}</h1>
+            <p>{{ 'Read our favorite reviews about our Job Platform from our clients.'|trans }}</p>
+        </div><!-- /.page-block-title -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box-long">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active">
+                                <div class="box-long-rating">
+                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                </div><!-- /.box-long-rating -->
+
+                                <p>
+                                    Duis sit amet elit ornare, interdum augue et, sodales eros. Aliquam erat volutpat. In hac habitasse platea dictumst. Etiam quis eros finibus diam auctor gravida eu vitae ipsum. Phasellus luctus euismod molestie. Proin ac risus dolor. Phasellus a urna sollicitudin, pulvinar diam at, posuere felis.
+                                </p>
+
+                                <span class="box-long-author">
+                                    <span class="box-long-author-photo">
+                                        <img src="{{ asset('bundles/front/img/tmp/user-1.jpg') }}" alt="John Doe">
+                                    </span>
+
+                                    <span class="box-long-author-name">
+                                        John Doe
+                                    </span>
+                                    -
+                                    <span class="box-long-author-company">
+                                        Awesome Company Ltd.
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="box-long-rating">
+                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                </div><!-- /.box-long-rating -->
+
+                                <p>
+                                    Duis sit amet elit ornare, interdum augue et, sodales eros. Aliquam erat volutpat. In hac habitasse platea dictumst. Etiam quis eros finibus diam auctor gravida eu vitae ipsum. Phasellus luctus euismod molestie. Proin ac risus dolor. Phasellus a urna sollicitudin, pulvinar diam at, posuere felis.
+                                </p>
+
+                                <span class="box-long-author">
+                                    <span class="box-long-author-photo">
+                                        <img src="{{ asset('bundles/front/img/tmp/user-7.jpg') }}" alt="John Doe">
+                                    </span>
+
+                                    <span class="box-long-author-name">
+                                        John Doe
+                                    </span>
+                                    -
+                                    <span class="box-long-author-company">
+                                        Awesome Company Ltd.
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="box-long-rating">
+                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                </div><!-- /.box-long-rating -->
+
+                                <p>
+                                    Duis sit amet elit ornare, interdum augue et, sodales eros. Aliquam erat volutpat. In hac habitasse platea dictumst. Etiam quis eros finibus diam auctor gravida eu vitae ipsum. Phasellus luctus euismod molestie. Proin ac risus dolor. Phasellus a urna sollicitudin, pulvinar diam at, posuere felis.
+                                </p>
+
+                                <span class="box-long-author">
+                                    <span class="box-long-author-photo">
+                                        <img src="{{ asset('bundles/front/img/tmp/user-8.jpg') }}" alt="John Doe">
+                                    </span>
+
+                                    <span class="box-long-author-name">
+                                        John Doe
+                                    </span>
+                                    -
+                                    <span class="box-long-author-company">
+                                        Awesome Company Ltd.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                    </div>
+                </div><!-- /.box-long -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.block -->
+
+    {% if categories %}
+        <div class="row">
+            <ul class="categories mb80 mt80">
+                {% for category in categories %}
+                    <li class="col-xs-6 co-sm-4 col-md-4 col-lg-2">
+                        <a href="{{ path('category_list', {'slug': category.slug}) }}">
+                            {{ category.getName() }}
+
+                            <span>{{ category.getJobs()|length }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div><!-- /.row -->
+    {% endif %}
+{% endblock %}

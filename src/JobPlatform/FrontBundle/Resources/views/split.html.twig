@@ -1,0 +1,15 @@
+{% extends 'FrontBundle::base_simple.html.twig' %}
+
+{% block body %}
+    <div class="split-wrapper">
+        <div class="split-content">
+            {{ include('FrontBundle::Helpers/messages.html.twig') }}
+
+            {% block content %}{% endblock %}
+        </div><!-- /.sidebar -->
+
+        <div class="split-sidebar">
+            {% block sidebar %}{% endblock %}
+        </div><!-- /.split-sidebar -->
+    </div><!-- /.split-wrapper -->
+{% endblock %}

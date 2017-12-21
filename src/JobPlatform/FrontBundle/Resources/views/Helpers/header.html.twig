@@ -1,0 +1,101 @@
+<div class="header">
+    <nav class="navbar">
+        <a class="navbar-brand" href="{{ path('homepage') }}">
+            <img src="{{ asset('bundles/front/img/logo.png') }}" alt="">
+            job<span>platform</span>
+        </a>
+
+        <div class="header-nav collapse navbar-toggleable-md">
+            <div class="header-nav-close" data-toggle="collapse" data-target=".header-nav" role="navigation" aria-expanded="false" onclick=""></div><!-- /.header-nav-close -->
+
+            <div class="header-nav-inner">
+                <div class="header-top">
+                    <h3 class="header-title">{{ 'Navigation'|trans }}</h3>
+                    
+                    <ul class="nav navbar-nav navbar-primary">
+                        <li class="nav-item">
+                            <a class="nav-link {% if header_active is defined and header_active == 'jobs' %}active{% endif %}" href="{{ path('job_list') }}">{{ 'Jobs'|trans }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {% if header_active is defined and header_active == 'companies' %}active{% endif %}" href="{{ path('company_list') }}">{{ 'Companies'|trans }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {% if header_active is defined and header_active == 'profiles' %}active{% endif %}" href="{{ path('profile_list') }}">{{ 'Candidates'|trans }}</a>
+                        </li>
+                    </ul>
+
+                    <h3 class="header-title">{{ 'User Account'|trans }}</h3>
+
+                    <ul class="nav navbar-nav navbar-secondary pull-md-right">
+                        {% if app.user %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                    {% spaceless %}
+                                        {% if app.user.profile and app.user.profile.getAvatarName() %}
+                                            <img src="{{ vich_uploader_asset(app.user.profile, 'avatarImage') }}" alt="{{ app.user.getProfile().getDisplayName() }}">
+                                        {% else %}
+                                            <div class="dropdown-avatar">
+                                                {% if app.user.profile %}
+                                                    {{ app.user.profile.getInitials() }}
+                                                {% else %}
+                                                    {{ app.user.getUsername()|first }}
+                                                {% endif %}
+                                            </div><!-- /.dropdown-avatar -->
+                                        {% endif %}
+
+                                        {% if app.user.getProfile() %}
+                                            {{ app.user.getProfile().getDisplayName() }}
+                                        {% else %}
+                                            {{ app.user.getUsername() }}
+                                        {% endif %}
+
+                                        <i class="fa fa-caret-down"></i>
+                                    {% endspaceless %}
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="header-dropdown">
+                                    <a class="dropdown-item" href="{{ path('profile_settings') }}">{{ 'User Settings'|trans }}</a>
+                                    <a class="dropdown-item" href="{{ path('fos_user_change_password') }}">{{ 'Change Password'|trans }}</a>
+                                    <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }} <i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item shopping-cart">
+                                <a href="{{ path('cart_list') }}" class="nav-link">
+                                    <i class="fa fa-shopping-cart"></i>
+
+                                    <span class="shopping-cart-title">{{ 'Shopping cart'|trans }}</span>
+
+                                    <span class="badge">
+                                        {{ cart_get_count() }}{% if cart_get_price() %}<span class="price">{{ cart_get_price()|localizedcurrency(currency) }}</span>{% endif %}
+                                    </span>
+                                </a>
+                            </li>
+                        {% else %}                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link important" href="{{ path('fos_user_registration_register') }}">{{ 'Create Account'|trans }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div><!-- /.header-top -->
+
+                {% if app.user %}
+                    {% include('FrontBundle::Helpers/navigation.html.twig') %}
+                {% endif %}
+            </div><!-- /.header-nav-inner -->
+        </div><!-- /.header-nav -->
+
+
+        <button class="navbar-toggler float-xs-right hidden-lg-up" type="button" data-toggle="collapse" data-target=".header-nav"  aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+</div><!-- /.header -->

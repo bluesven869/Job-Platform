@@ -1,0 +1,13 @@
+{% extends 'FrontBundle::fullwidth.html.twig' %}
+
+{% set active = 'profile' %}
+
+{% block title %}{{ 'Profile'|trans }} - {{ 'General'|trans }}{% endblock %}
+
+{% block page_header %}{{ 'Profile'|trans }} - {{ 'General'|trans }}{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
