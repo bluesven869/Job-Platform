@@ -40,11 +40,12 @@
         "payum/paypal-express-checkout-nvp": "^1.3",
         "php-http/guzzle6-adapter": "^1.1",
         "league/uri": "^4.0.0",
-        "jeremykendall/php-domain-parser": "^3.0.0"
+       
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "jeremykendall/php-domain-parser": "3.0.0"
     },
     "scripts": {
         "symfony-scripts": [
