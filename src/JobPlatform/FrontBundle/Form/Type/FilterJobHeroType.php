@@ -35,7 +35,7 @@ class FilterJobHeroType extends AbstractType
             'placeholder' => 'Select Project Type',
           ])
           ->add('save', SubmitType::class, [
-            'label' => 'Filter Jobs',
+            'label' => 'Filter Tutorings',
             'attr' => ['class' => 'btn-primary btn-block'],
           ])->setMethod('GET')->setAction($options['router']->generate('job_list'));
     }
