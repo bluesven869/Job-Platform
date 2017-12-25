@@ -29,9 +29,9 @@ class ProfileController extends Controller
         }
 
         $profiles = $this->getDoctrine()->getRepository('AppBundle:Profile')->findByFilterQuery($request, $types);
-        //var_dump($profiles);
+        //
         $profiles = $this->get('knp_paginator')->paginate($profiles, $request->query->getInt('page', 1), 10);
-
+        var_dump($profiles);
         $filter = $this->createForm(FilterProfileType::class, [], ['router' => $this->get('router')]);
         $filter->handleRequest($request);
 
