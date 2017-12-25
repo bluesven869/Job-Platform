@@ -24,11 +24,11 @@ class FilterProfileType extends AbstractType
                 'required' => false,
             ])
             ->add('is_verified', CheckboxType::class, [
-                'label' => 'Verified candidates only',
+                'label' => 'Verified tutors only',
                 'required' => false,
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Filter Candidates',
+                'label' => 'Filter Tutors',
                 'attr' => ['class' => 'btn-primary btn-block'],
             ])
             ->setMethod('GET')

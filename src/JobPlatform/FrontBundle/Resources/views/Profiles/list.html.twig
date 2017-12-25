@@ -2,10 +2,10 @@
 
 {% set header_active = 'profiles' %}
 
-{% block title %}{{ 'Candidates'|trans }}{% endblock %}
+{% block title %}{{ 'Tutors'|trans }}{% endblock %}
 
 {% block page_header %}
-    {{ 'Candidates'|trans }}
+    {{ 'Tutors'|trans }}
 {% endblock %}
 
 {% block sidebar %}
@@ -18,7 +18,7 @@
     </div><!-- /.widget-filter -->
 
     <div class="partner-block center-image">
-        <h2>{{ 'Create New Developer Account'|trans }}</h2>
+        <h2>{{ 'Create New Tutor Account'|trans }}</h2>
         <h3>{{ 'Detailed Oriented Profiles Gets Brilliant Clients'|trans }}</h3>
         <a href="#" class="btn btn-primary">{{ 'Create Account'|trans }}</a>
     </div><!-- /.widget-partner -->
@@ -30,7 +30,7 @@
             <h2>
                 {% set count = profiles.getTotalItemCount %}
                 {% transchoice count %}
-                    {0} %count% candidates matching query|{1} %count% candidate matching query|]1,Inf[%count% candidates matching query
+                    {0} %count% tutors matching query|{1} %count% tutors matching query|]1,Inf[%count% tutors matching query
                 {% endtranschoice %}
             </h2>
         </div><!-- /.page-title -->

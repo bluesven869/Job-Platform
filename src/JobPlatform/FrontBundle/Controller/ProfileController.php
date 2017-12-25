@@ -21,6 +21,7 @@ class ProfileController extends Controller
      */
     public function listAction(Request $request)
     {
+
         if ($this->getUser()) {
             $types = [Profile::VISIBILITY_PUBLIC, Profile::VISIBILITY_AUTHENTICATED];
         } else {
@@ -28,6 +29,7 @@ class ProfileController extends Controller
         }
 
         $profiles = $this->getDoctrine()->getRepository('AppBundle:Profile')->findByFilterQuery($request, $types);
+        //var_dump($profiles);
         $profiles = $this->get('knp_paginator')->paginate($profiles, $request->query->getInt('page', 1), 10);
 
         $filter = $this->createForm(FilterProfileType::class, [], ['router' => $this->get('router')]);
