@@ -706,7 +706,7 @@ CREATE TABLE `job_platform_users` (
   `email` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
   `email_canonical` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  `salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `salt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `last_login` datetime DEFAULT NULL,
   `locked` tinyint(1) NOT NULL,

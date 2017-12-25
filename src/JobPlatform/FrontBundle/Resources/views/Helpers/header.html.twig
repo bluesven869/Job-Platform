@@ -2,7 +2,7 @@
     <nav class="navbar">
         <a class="navbar-brand" href="{{ path('homepage') }}">
             <img src="{{ asset('bundles/front/img/logo.png') }}" alt="">
-            koekii
+            koekii.com
         </a>
 
         <div class="header-nav collapse navbar-toggleable-md">
@@ -14,15 +14,15 @@
                     
                     <ul class="nav navbar-nav navbar-primary">
                         <li class="nav-item">
-                            <a class="nav-link {% if header_active is defined and header_active == 'jobs' %}active{% endif %}" href="{{ path('job_list') }}">{{ 'Jobs'|trans }}</a>
+                            <a class="nav-link {% if header_active is defined and header_active == 'jobs' %}active{% endif %}" href="{{ path('job_list') }}">{{ 'Positions'|trans }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {% if header_active is defined and header_active == 'companies' %}active{% endif %}" href="{{ path('company_list') }}">{{ 'Companies'|trans }}</a>
+                            <a class="nav-link {% if header_active is defined and header_active == 'companies' %}active{% endif %}" href="{{ path('company_list') }}">{{ 'Colleges'|trans }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {% if header_active is defined and header_active == 'profiles' %}active{% endif %}" href="{{ path('profile_list') }}">{{ 'Candidates'|trans }}</a>
+                            <a class="nav-link {% if header_active is defined and header_active == 'profiles' %}active{% endif %}" href="{{ path('profile_list') }}">{{ 'Tutors'|trans }}</a>
                         </li>
                     </ul>
 
