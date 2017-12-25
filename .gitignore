@@ -3,3 +3,4 @@
 /vendor
 /var
 /composer.lock
+/app/config
