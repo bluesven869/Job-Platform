@@ -709,7 +709,7 @@ CREATE TABLE `job_platform_users` (
   `salt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `last_login` datetime DEFAULT NULL,
-  `locked` tinyint(1) NOT NULL,
+  `locked` tinyint(1) DEFAULT 0 NOT NULL,
   `expired` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL,
   `confirmation_token` varchar(180) COLLATE utf8_unicode_ci DEFAULT NULL,
